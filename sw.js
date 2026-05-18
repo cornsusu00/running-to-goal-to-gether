@@ -2,8 +2,8 @@ const CACHE_NAME = 'run-futsal-v1';
 const ASSETS = [
   './index.html',
   './manifest.json',
-  './app_icon.png',
-  './og_preview.png'
+  './app_icon_cute.png',
+  './og_preview_cute.png'
 ];
 
 self.addEventListener('install', event => {

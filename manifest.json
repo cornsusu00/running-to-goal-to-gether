@@ -1,7 +1,7 @@
 {
   "name": "러닝에서 풋살까지",
   "short_name": "러닝풋살",
-  "description": "동료들과 함께하는 러닝 및 풋살 실시간 스케쥴러",
+  "description": "다이어트도 건강도, 그냥 함께 뛰면 즐거우니까! 우리들의 행복한 운동 스케쥴러 🌸",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f5f9fc",
@@ -9,7 +9,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "app_icon.png",
+      "src": "app_icon_cute.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
