@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>?룂?뤋?띯?截뤴띯옟截??щ떇?먯꽌 ?뗭궡源뚯? ?ㅈ?뤋?띯?截?/title>
+<title>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</title>
 <!-- Beautiful Pretendard Font for Korean Text Clarity -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
@@ -402,35 +402,35 @@ canvas.cv {
 </head>
 <body>
 <div class="header-wrap">
-  <h1>?룂?뤋?띯?截뤴띯옟截??щ떇?먯꽌 ?뗭궡源뚯? ?ㅈ?뤋?띯?截?/h1>
+  <h1>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</h1>
   <button class="admin-lock-btn" id="lockBtn" onclick="toggleAdminMode()">
-    <span class="lock-icon">?뵏</span> <span class="lock-txt">愿由ъ옄 濡쒓렇??/span>
+    <span class="lock-icon">🔒</span> <span class="lock-txt">관리자 로그인</span>
   </button>
 </div>
 <div class="sheets-wrap" id="sw"></div>
 <div class="content">
-  <div class="status" id="st">?곌껐 以?..</div>
+  <div class="status" id="st">연결 중...</div>
   <div class="entry-row">
-    <input class="nick-inp" id="ni" type="text" placeholder="?됰꽕???낅젰..." maxlength="8" autocomplete="off"/>
-    <button class="join-btn" onclick="join()">李몄뿬</button>
+    <input class="nick-inp" id="ni" type="text" placeholder="닉네임 입력..." maxlength="8" autocomplete="off"/>
+    <button class="join-btn" onclick="join()">참여</button>
   </div>
   <div class="legend" id="leg"></div>
   <div class="abar" id="ab">
     <span class="adot" id="ad"></span>
     <span class="aname" id="an"></span>
-    <span class="ahint">?쇰줈 ?쒖떆 以?/span>
-    <button class="clr-btn" onclick="clearMe()">吏?곌린</button>
+    <span class="ahint">으로 표시 중</span>
+    <button class="clr-btn" onclick="clearMe()">지우기</button>
   </div>
   <div class="grid-wrap"><table><thead id="th"></thead><tbody id="tb"></tbody></table></div>
-  <p class="hint-txt">?????룸뱶?섍렇?댁꽌 媛?ν븳 ?쒓컙 ?쒖떆</p>
+  <p class="hint-txt">셀을 탭·드래그해서 가능한 시간 표시</p>
 </div>
 <div class="modal-bg" id="modal">
   <div class="modal-box">
-    <h3>??二쇱감 ?대쫫</h3>
-    <input class="modal-inp" id="mi" placeholder="?? 6/2 二? maxlength="12"/>
+    <h3>새 주차 이름</h3>
+    <input class="modal-inp" id="mi" placeholder="예: 6/2 주" maxlength="12"/>
     <div class="mbtns">
-      <button class="mcancel" onclick="closeM()">痍⑥냼</button>
-      <button class="mok" onclick="okM()">異붽?</button>
+      <button class="mcancel" onclick="closeM()">취소</button>
+      <button class="mok" onclick="okM()">추가</button>
     </div>
   </div>
 </div>
@@ -453,7 +453,7 @@ const db = getDatabase(initializeApp({
 // Admin Settings passcode (Can edit here if you want to change it)
 const ADMIN_PASSWORD = "1234";
 
-const DAYS = ['??,'??,'??,'紐?,'湲?,'??,'??];
+const DAYS = ['월','화','수','목','금','토','일'];
 const TIMES = [];
 for (let h = 18; h <= 20; h++) {
   TIMES.push(h + ':00');
@@ -480,7 +480,7 @@ onValue(ref(db, 'sheets'), snap => {
   sheets = Object.values(v).sort((a, b) => (a.order ?? a.created) - (b.order ?? b.created));
   
   if (!sheets.length) {
-    newSheet('泥?踰덉㎏ 二?, true);
+    newSheet('첫 번째 주', true);
   } else {
     if (!cur || !sheets.find(s => s.id === cur)) {
       selSheet(sheets[0].id);
@@ -495,7 +495,7 @@ function newSheet(label, silent) {
   const maxOrder = sheets.length ? Math.max(...sheets.map(s => s.order ?? s.created)) : id;
   set(ref(db, 'sheets/' + id), {
     id,
-    label: label || '??二쇱감',
+    label: label || '새 주차',
     created: id,
     order: maxOrder + 1
   });
@@ -504,10 +504,10 @@ function newSheet(label, silent) {
 
 function delSheet(id) {
   if (sheets.length <= 1) {
-    alert('留덉?留??쒗듃????젣?????놁뼱??');
+    alert('마지막 시트는 삭제할 수 없어요.');
     return;
   }
-  if (confirm('???쒗듃瑜??뺣쭚 ??젣?섏떆寃좎뒿?덇퉴? 愿??李몄뿬?먮뱾???덉빟 ?댁뿭??紐⑤몢 ?④퍡 ??젣?⑸땲??')) {
+  if (confirm('이 시트를 정말 삭제하시겠습니까? 관련 참여자들의 예약 내역이 모두 함께 삭제됩니다.')) {
     set(ref(db, 'sheets/' + id), null);
     set(ref(db, 'data/' + id), null);
     if (cur === id) {
@@ -560,12 +560,12 @@ function renderTabs() {
     if (isAdmin) {
       if (isActive) {
         tabHtml += `
-          <span class="edit-btn" title="?대쫫 ?섏젙" onclick="event.stopPropagation();_ren(${s.id})">?륅툘</span>
-          <span class="mv-btn" title="?쇱そ ?대룞" onclick="event.stopPropagation();_mv(${s.id}, 'left')">?</span>
-          <span class="mv-btn" title="?ㅻⅨ履??대룞" onclick="event.stopPropagation();_mv(${s.id}, 'right')">??/span>
+          <span class="edit-btn" title="이름 수정" onclick="event.stopPropagation();_ren(${s.id})">✏️</span>
+          <span class="mv-btn" title="왼쪽 이동" onclick="event.stopPropagation();_mv(${s.id}, 'left')">◀</span>
+          <span class="mv-btn" title="오른쪽 이동" onclick="event.stopPropagation();_mv(${s.id}, 'right')">▶</span>
         `;
       }
-      tabHtml += `<span class="dx" title="?쒗듃 ??젣" onclick="event.stopPropagation();_del(${s.id})">??/span>`;
+      tabHtml += `<span class="dx" title="시트 삭제" onclick="event.stopPropagation();_del(${s.id})">✕</span>`;
     }
     
     tabHtml += `</div>`;
@@ -593,7 +593,7 @@ function selSheet(id) {
   dataRef = ref(db, 'data/' + id);
   dataUnsub = onValue(dataRef, snap => {
     data = snap.val() || {};
-    st('?ㅼ떆媛??곌껐????);
+    st('실시간 연결됨 ✓');
     renderLeg();
     renderAll();
   });
@@ -646,7 +646,7 @@ function toggle(di, ti) {
 function renderLeg() {
   const ul = users(), el = document.getElementById('leg');
   if (!ul.length) {
-    el.innerHTML = '<span style="font-size:12px;color:#9ab0c8">?됰꽕?꾩쓣 ?낅젰?섍퀬 李몄뿬?섏꽭??/span>';
+    el.innerHTML = '<span style="font-size:12px;color:#9ab0c8">닉네임을 입력하고 참여하세요</span>';
     return;
   }
   el.innerHTML = ul.map(u => `
@@ -655,7 +655,7 @@ function renderLeg() {
          onclick="_sa('${esc(u.name)}')">
       <span class="leg-dot" style="background:${u.color}"></span>
       <span style="color:#1a1a2e;font-weight:600">${esc(u.name)}</span>
-      <span class="leg-x" onclick="event.stopPropagation();_rm('${esc(u.name)}')">??/span>
+      <span class="leg-x" onclick="event.stopPropagation();_rm('${esc(u.name)}')">✕</span>
     </div>
   `).join('');
 }
@@ -791,21 +791,21 @@ window.addEventListener('resize', renderAll);
 // Expose admin trigger and utility functions to window for HTML event bindings
 window.toggleAdminMode = () => {
   if (isAdmin) {
-    if (confirm('愿由ъ옄 紐⑤뱶瑜?濡쒓렇?꾩썐?섏떆寃좎뒿?덇퉴?')) {
+    if (confirm('관리자 모드를 로그아웃하시겠습니까?')) {
       isAdmin = false;
       localStorage.setItem('isAdmin', 'false');
       updateAdminUI();
     }
   } else {
-    const pw = prompt('愿由ъ옄 鍮꾨?踰덊샇瑜??낅젰?섏꽭??');
+    const pw = prompt('관리자 비밀번호를 입력하세요:');
     if (pw === null) return;
     if (pw === ADMIN_PASSWORD) {
       isAdmin = true;
       localStorage.setItem('isAdmin', 'true');
-      alert('愿由ъ옄 紐⑤뱶媛 ?쒖꽦?붾릺?덉뒿?덈떎!');
+      alert('관리자 모드가 활성화되었습니다!');
       updateAdminUI();
     } else {
-      alert('鍮꾨?踰덊샇媛 ?щ컮瑜댁? ?딆뒿?덈떎.');
+      alert('비밀번호가 올바르지 않습니다.');
     }
   }
 };
@@ -813,10 +813,10 @@ window.toggleAdminMode = () => {
 function updateAdminUI() {
   const lockBtn = document.getElementById('lockBtn');
   if (isAdmin) {
-    lockBtn.innerHTML = '<span class="lock-icon">?뵑</span> <span class="lock-txt">愿由ъ옄 紐⑤뱶</span>';
+    lockBtn.innerHTML = '<span class="lock-icon">🔓</span> <span class="lock-txt">관리자 모드</span>';
     lockBtn.classList.add('unlocked');
   } else {
-    lockBtn.innerHTML = '<span class="lock-icon">?뵏</span> <span class="lock-txt">愿由ъ옄 濡쒓렇??/span>';
+    lockBtn.innerHTML = '<span class="lock-icon">🔒</span> <span class="lock-txt">관리자 로그인</span>';
     lockBtn.classList.remove('unlocked');
   }
   renderTabs();
@@ -834,7 +834,7 @@ window._ren = id => {
   if (!isAdmin) return;
   const s = sheets.find(x => x.id === id);
   if (!s) return;
-  const n = prompt('?쒗듃 ?대쫫 蹂寃?', s.label);
+  const n = prompt('시트 이름 변경:', s.label);
   if (n && n.trim()) {
     set(ref(db, 'sheets/' + id + '/label'), n.trim());
   }
@@ -862,7 +862,7 @@ window._rm = rmUser;
 window.openM = () => {
   if (!isAdmin) return;
   const d = new Date();
-  document.getElementById('mi').value = `${d.getMonth() + 1}/${d.getDate()} 二?;
+  document.getElementById('mi').value = `${d.getMonth() + 1}/${d.getDate()} 주`;
   document.getElementById('modal').classList.add('show');
   setTimeout(() => document.getElementById('mi').focus(), 100);
 };
