@@ -1,720 +1,784 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</title>
-<!-- Open Graph Meta Tags for Premium KakaoTalk Links -->
-<meta property="og:title" content="🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️">
-<meta property="og:description" content="목표는 달라도 함께 뛰면 즐거우니까!">
-<meta property="og:image" content="https://cornsusu00.github.io/running-to-goal-to-gether/og_preview_cute.png">
-<meta property="og:url" content="https://cornsusu00.github.io/running-to-goal-to-gether/">
-<meta property="og:type" content="website">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</title>
+  <!-- Open Graph Meta Tags for Premium KakaoTalk Links -->
+  <meta property="og:title" content="🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️">
+  <meta property="og:description" content="목표는 달라도 함께 뛰면 즐거우니까! 매일매일 더 건강해지는 우리들의 달리기🏡">
+  <meta property="og:image" content="https://cornsusu00.github.io/running-to-goal-to-gether/og_preview_cute.png">
+  <meta property="og:url" content="https://cornsusu00.github.io/running-to-goal-to-gether/">
+  <meta property="og:type" content="website">
 
-<!-- Mobile & PWA App Settings -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#185fa5">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Navi-Run Sched">
-<link rel="apple-touch-icon" href="app_icon_cute.png">
+  <!-- Mobile & PWA App Settings -->
+  <link rel="manifest" href="manifest.json?v=3">
+  <meta name="theme-color" content="#185fa5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Navi-Running Sched">
+  <link rel="apple-touch-icon" href="app_icon_cute.png">
 
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('PWA ServiceWorker registered!'))
-      .catch(err => console.error('PWA ServiceWorker registration failed:', err));
-  });
-}
-</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('PWA ServiceWorker registered!'))
+          .catch(err => console.error('PWA ServiceWorker registration failed:', err));
+      });
+    }
+  </script>
 
-<!-- Beautiful Pretendard Font for Korean Text Clarity -->
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #f5f7fb;
-  min-height: 100vh;
-}
-/* Modern Header Wrap with Admin Lock */
-.header-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 16px 10px;
-  background: #fff;
-  border-bottom: 1.5px solid #e1efff;
-}
-h1 {
-  font-size: 17px;
-  font-weight: 700;
-  color: #1a1a2e;
-}
-.admin-lock-btn {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: #f0f7ff;
-  border: 1.5px solid #c8dff5;
-  border-radius: 20px;
-  padding: 5px 10px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #5a7a9a;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.admin-lock-btn:hover {
-  background: #e1efff;
-}
-.admin-lock-btn.unlocked {
-  background: #e6f9ed;
-  border-color: #a3e4cd;
-  color: #157a54;
-}
-.admin-lock-btn.unlocked:hover {
-  background: #d5f5e0;
-}
+  <!-- Beautiful Pretendard Font for Korean Text Clarity -->
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-.sheets-wrap {
-  display: flex;
-  align-items: flex-end;
-  overflow-x: auto;
-  padding: 10px 16px 0;
-  scrollbar-width: none;
-  border-bottom: 2px solid #c8dff5;
-}
-.sheets-wrap::-webkit-scrollbar {
-  display: none;
-}
-.sheet-tab {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  flex-shrink: 0;
-  padding: 7px 12px;
-  font-size: 12px;
-  color: #5a7a9a;
-  border: 1.5px solid #c8dff5;
-  border-bottom: none;
-  border-radius: 8px 8px 0 0;
-  background: #f0f7ff;
-  cursor: pointer;
-  margin-right: 3px;
-  white-space: nowrap;
-  position: relative;
-  bottom: -2px;
-  transition: all 0.2s ease;
-}
-.sheet-tab.active {
-  background: #fff;
-  color: #185fa5;
-  font-weight: 700;
-  border-bottom: 2px solid #fff;
-  z-index: 1;
-}
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f7fb;
+      min-height: 100vh;
+    }
 
-/* Tab Admin Control Buttons */
-.sheet-tab .edit-btn {
-  margin-left: 2px;
-  font-size: 10px;
-  cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 0.2s;
-}
-.sheet-tab .edit-btn:hover {
-  opacity: 1;
-}
-.sheet-tab .mv-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-  font-size: 8px;
-  background: #e1f0ff;
-  color: #185fa5;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.sheet-tab .mv-btn:hover {
-  background: #185fa5;
-  color: #fff;
-}
-.dx {
-  margin-left: 4px;
-  font-size: 10px;
-  opacity: 0.35;
-  transition: opacity 0.2s;
-}
-.dx:hover {
-  opacity: 1;
-  color: #d85a30;
-}
+    /* Modern Header Wrap with Admin Lock */
+    .header-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 16px 10px;
+      background: #fff;
+      border-bottom: 1.5px solid #e1efff;
+    }
 
-.add-sh {
-  flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  border: 1.5px dashed #c8dff5;
-  border-radius: 8px;
-  background: transparent;
-  color: #5a7a9a;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2px;
-  transition: all 0.2s;
-}
-.add-sh:hover {
-  background: #f0f7ff;
-  border-style: solid;
-}
+    h1 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
 
-.content {
-  background: #fff;
-  padding: 14px 16px 24px;
-}
-.status {
-  font-size: 11px;
-  color: #9ab0c8;
-  margin-bottom: 8px;
-  min-height: 16px;
-}
-.entry-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.nick-inp {
-  flex: 1;
-  height: 44px;
-  border: 1.5px solid #b5d4f4;
-  border-radius: 10px;
-  padding: 0 12px;
-  font-size: 15px;
-  color: #1a1a2e;
-  background: #fff;
-  -webkit-appearance: none;
-}
-.nick-inp:focus {
-  outline: none;
-  border-color: #378add;
-}
-.join-btn {
-  height: 44px;
-  padding: 0 20px;
-  border: none;
-  border-radius: 10px;
-  background: #378add;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.join-btn:active {
-  background: #185fa5;
-}
+    .admin-lock-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #f0f7ff;
+      border: 1.5px solid #c8dff5;
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #5a7a9a;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
-.legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 10px;
-  min-height: 20px;
-}
-.leg {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  padding: 4px 10px 4px 7px;
-  border-radius: 20px;
-  cursor: pointer;
-  border: 1.5px solid transparent;
-  transition: all 0.2s;
-}
-.leg.cur {
-  border-width: 1.5px;
-  border-style: solid;
-}
-.leg-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.leg-x {
-  font-size: 10px;
-  opacity: 0.35;
-  margin-left: 2px;
-  transition: opacity 0.2s;
-}
-.leg-x:hover {
-  opacity: 1;
-  color: #d85a30;
-}
+    .admin-lock-btn:hover {
+      background: #e1efff;
+    }
 
-.abar {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-}
-.adot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.aname {
-  font-size: 13px;
-  font-weight: 600;
-  color: #1a1a2e;
-}
-.ahint {
-  font-size: 12px;
-  color: #7a95b0;
-}
-.clr-btn {
-  margin-left: auto;
-  padding: 6px 12px;
-  border: 1.5px solid #c8dff5;
-  border-radius: 8px;
-  background: #fff;
-  color: #5a7a9a;
-  font-size: 12px;
-  cursor: pointer;
-}
+    .admin-lock-btn.unlocked {
+      background: #e6f9ed;
+      border-color: #a3e4cd;
+      color: #157a54;
+    }
 
-.grid-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 100%;
-  min-width: 320px;
-  margin: 0 auto;
-}
-th {
-  font-size: 11px;
-  font-weight: 600;
-  color: #5a7a9a;
-  padding: 6px 2px;
-  text-align: center;
-}
-th.tl {
-  width: 44px;
-}
-td.tlc {
-  width: 44px;
-  position: relative;
-  border: none;
-  vertical-align: top;
-}
-td.tlc span {
-  position: absolute;
-  top: 0;
-  right: 6px;
-  transform: translateY(-50%);
-  font-size: 9.5px;
-  font-weight: 600;
-  color: #8fa5bc;
-  white-space: nowrap;
-}
-td.cell {
-  border: 1px solid #c8dff5;
-  height: 54px;
-  position: relative;
-  user-select: none;
-  cursor: pointer;
-  background: #fff;
-}
-td.cell.half {
-  border-top: 1px dashed #d8eaf8;
-}
-canvas.cv {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  display: block;
-}
+    .admin-lock-btn.unlocked:hover {
+      background: #d5f5e0;
+    }
 
-/* Custom touch action to prevent page scrolling only during drawing mode */
-.drawing-active td.cell {
-  touch-action: none;
-}
+    .sheets-wrap {
+      display: flex;
+      align-items: flex-end;
+      overflow-x: auto;
+      padding: 10px 16px 0;
+      scrollbar-width: none;
+      border-bottom: 2px solid #c8dff5;
+    }
 
-.hint-txt {
-  font-size: 12px;
-  color: #185fa5;
-  background: #f0f7ff;
-  border: 1px solid #c8dff5;
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin-top: 14px;
-  text-align: center;
-  min-height: 18px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(24, 95, 165, 0.05);
-}
-.modal-bg {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 100;
-  align-items: center;
-  justify-content: center;
-}
-.modal-bg.show {
-  display: flex;
-}
-.modal-box {
-  background: #fff;
-  border-radius: 16px;
-  padding: 20px;
-  width: 280px;
-  max-width: 90vw;
-}
-.modal-box h3 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #1a1a2e;
-}
-.modal-inp {
-  width: 100%;
-  height: 44px;
-  border: 1.5px solid #b5d4f4;
-  border-radius: 10px;
-  padding: 0 12px;
-  font-size: 15px;
-  color: #1a1a2e;
-  -webkit-appearance: none;
-}
-.modal-inp:focus {
-  outline: none;
-  border-color: #378add;
-}
-.mbtns {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-}
-.mbtns button {
-  flex: 1;
-  height: 40px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-}
-.mok {
-  background: #378add;
-  color: #fff;
-}
-.mok:active {
-  background: #185fa5;
-}
-.mcancel {
-  background: #f0f7ff;
-  color: #5a7a9a;
-}
+    .sheets-wrap::-webkit-scrollbar {
+      display: none;
+    }
 
-/* Premium Mobile Responsiveness Options */
-@media (max-width: 480px) {
-  .content {
-    padding: 14px 8px 24px;
-  }
-  th.tl, td.tlc {
-    width: 38px;
-  }
-  td.tlc {
-    padding-right: 4px;
-    font-size: 9.5px;
-  }
-  th {
-    font-size: 10px;
-  }
-  td.cell {
-    height: 48px; /* Slightly adjust height for compact thumb grid drawing */
-  }
-}
-</style>
+    .sheet-tab {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+      padding: 7px 12px;
+      font-size: 12px;
+      color: #5a7a9a;
+      border: 1.5px solid #c8dff5;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      background: #f0f7ff;
+      cursor: pointer;
+      margin-right: 3px;
+      white-space: nowrap;
+      position: relative;
+      bottom: -2px;
+      transition: all 0.2s ease;
+    }
+
+    .sheet-tab.active {
+      background: #fff;
+      color: #185fa5;
+      font-weight: 700;
+      border-bottom: 2px solid #fff;
+      z-index: 1;
+    }
+
+    /* Tab Admin Control Buttons */
+    .sheet-tab .edit-btn {
+      margin-left: 2px;
+      font-size: 10px;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .sheet-tab .edit-btn:hover {
+      opacity: 1;
+    }
+
+    .sheet-tab .mv-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      font-size: 8px;
+      background: #e1f0ff;
+      color: #185fa5;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sheet-tab .mv-btn:hover {
+      background: #185fa5;
+      color: #fff;
+    }
+
+    .dx {
+      margin-left: 4px;
+      font-size: 10px;
+      opacity: 0.35;
+      transition: opacity 0.2s;
+    }
+
+    .dx:hover {
+      opacity: 1;
+      color: #d85a30;
+    }
+
+    .add-sh {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border: 1.5px dashed #c8dff5;
+      border-radius: 8px;
+      background: transparent;
+      color: #5a7a9a;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2px;
+      transition: all 0.2s;
+    }
+
+    .add-sh:hover {
+      background: #f0f7ff;
+      border-style: solid;
+    }
+
+    .content {
+      background: #fff;
+      padding: 14px 16px 24px;
+    }
+
+    .status {
+      font-size: 11px;
+      color: #9ab0c8;
+      margin-bottom: 8px;
+      min-height: 16px;
+    }
+
+    .entry-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .nick-inp {
+      flex: 1;
+      height: 44px;
+      border: 1.5px solid #b5d4f4;
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 15px;
+      color: #1a1a2e;
+      background: #fff;
+      -webkit-appearance: none;
+    }
+
+    .nick-inp:focus {
+      outline: none;
+      border-color: #378add;
+    }
+
+    .join-btn {
+      height: 44px;
+      padding: 0 20px;
+      border: none;
+      border-radius: 10px;
+      background: #378add;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .join-btn:active {
+      background: #185fa5;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+      min-height: 20px;
+    }
+
+    .leg {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      padding: 4px 10px 4px 7px;
+      border-radius: 20px;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .leg.cur {
+      border-width: 1.5px;
+      border-style: solid;
+    }
+
+    .leg-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .leg-x {
+      font-size: 10px;
+      opacity: 0.35;
+      margin-left: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .leg-x:hover {
+      opacity: 1;
+      color: #d85a30;
+    }
+
+    .abar {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .adot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .aname {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .ahint {
+      font-size: 12px;
+      color: #7a95b0;
+    }
+
+    .clr-btn {
+      margin-left: auto;
+      padding: 6px 12px;
+      border: 1.5px solid #c8dff5;
+      border-radius: 8px;
+      background: #fff;
+      color: #5a7a9a;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .grid-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+      min-width: 320px;
+      margin: 0 auto;
+    }
+
+    th {
+      font-size: 11px;
+      font-weight: 600;
+      color: #5a7a9a;
+      padding: 6px 2px;
+      text-align: center;
+    }
+
+    th.tl {
+      width: 44px;
+    }
+
+    td.tlc {
+      width: 44px;
+      position: relative;
+      border: none;
+      vertical-align: top;
+    }
+
+    td.tlc span {
+      position: absolute;
+      top: 0;
+      right: 6px;
+      transform: translateY(-50%);
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #8fa5bc;
+      white-space: nowrap;
+    }
+
+    td.cell {
+      border: 1px solid #c8dff5;
+      height: 54px;
+      position: relative;
+      user-select: none;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    td.cell.half {
+      border-top: 1px dashed #d8eaf8;
+    }
+
+    canvas.cv {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* Custom touch action to prevent page scrolling only during drawing mode */
+    .drawing-active td.cell {
+      touch-action: none;
+    }
+
+    .hint-txt {
+      font-size: 12px;
+      color: #185fa5;
+      background: #f0f7ff;
+      border: 1px solid #c8dff5;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-top: 14px;
+      text-align: center;
+      min-height: 18px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(24, 95, 165, 0.05);
+    }
+
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-bg.show {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      width: 280px;
+      max-width: 90vw;
+    }
+
+    .modal-box h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a1a2e;
+    }
+
+    .modal-inp {
+      width: 100%;
+      height: 44px;
+      border: 1.5px solid #b5d4f4;
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 15px;
+      color: #1a1a2e;
+      -webkit-appearance: none;
+    }
+
+    .modal-inp:focus {
+      outline: none;
+      border-color: #378add;
+    }
+
+    .mbtns {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .mbtns button {
+      flex: 1;
+      height: 40px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+
+    .mok {
+      background: #378add;
+      color: #fff;
+    }
+
+    .mok:active {
+      background: #185fa5;
+    }
+
+    .mcancel {
+      background: #f0f7ff;
+      color: #5a7a9a;
+    }
+
+    /* Premium Mobile Responsiveness Options */
+    @media (max-width: 480px) {
+      .content {
+        padding: 14px 8px 24px;
+      }
+
+      th.tl,
+      td.tlc {
+        width: 38px;
+      }
+
+      td.tlc {
+        padding-right: 4px;
+        font-size: 9.5px;
+      }
+
+      th {
+        font-size: 10px;
+      }
+
+      td.cell {
+        height: 48px;
+        /* Slightly adjust height for compact thumb grid drawing */
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="header-wrap">
-  <h1>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</h1>
-  <button class="admin-lock-btn" id="lockBtn" onclick="toggleAdminMode()">
-    <span class="lock-icon">🔒</span> <span class="lock-txt">관리자 로그인</span>
-  </button>
-</div>
-<div class="sheets-wrap" id="sw"></div>
-<div class="content">
-  <div class="status" id="st">연결 중...</div>
-  <div class="entry-row">
-    <input class="nick-inp" id="ni" type="text" placeholder="닉네임 입력..." maxlength="8" autocomplete="off"/>
-    <button class="join-btn" onclick="join()">참여</button>
+  <div class="header-wrap">
+    <h1>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</h1>
+    <button class="admin-lock-btn" id="lockBtn" onclick="toggleAdminMode()">
+      <span class="lock-icon">🔒</span> <span class="lock-txt">관리자 로그인</span>
+    </button>
   </div>
-  <div class="legend" id="leg"></div>
-  <div class="abar" id="ab">
-    <span class="adot" id="ad"></span>
-    <span class="aname" id="an"></span>
-    <span class="ahint">으로 표시 중</span>
-    <button class="clr-btn" onclick="clearMe()">지우기</button>
+  <div class="sheets-wrap" id="sw"></div>
+  <div class="content">
+    <div class="status" id="st">연결 중...</div>
+    <div class="entry-row">
+      <input class="nick-inp" id="ni" type="text" placeholder="닉네임 입력..." maxlength="8" autocomplete="off" />
+      <button class="join-btn" onclick="join()">참여</button>
+    </div>
+    <div class="legend" id="leg"></div>
+    <div class="abar" id="ab">
+      <span class="adot" id="ad"></span>
+      <span class="aname" id="an"></span>
+      <span class="ahint">으로 표시 중</span>
+      <button class="clr-btn" onclick="clearMe()">지우기</button>
+    </div>
+    <div class="grid-wrap">
+      <table>
+        <thead id="th"></thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+    <p class="hint-txt" id="cellInfo">셀을 터치하거나 마우스를 올려서 가능한 시간을 확인하세요</p>
   </div>
-  <div class="grid-wrap"><table><thead id="th"></thead><tbody id="tb"></tbody></table></div>
-  <p class="hint-txt" id="cellInfo">셀을 터치하거나 마우스를 올려서 가능한 시간을 확인하세요</p>
-</div>
-<div class="modal-bg" id="modal">
-  <div class="modal-box">
-    <h3>새 주차 이름</h3>
-    <input class="modal-inp" id="mi" placeholder="예: 6/2 주" maxlength="12"/>
-    <div class="mbtns">
-      <button class="mcancel" onclick="closeM()">취소</button>
-      <button class="mok" onclick="okM()">추가</button>
+  <div class="modal-bg" id="modal">
+    <div class="modal-box">
+      <h3>새 주차 이름</h3>
+      <input class="modal-inp" id="mi" placeholder="예: 6/2 주" maxlength="12" />
+      <div class="mbtns">
+        <button class="mcancel" onclick="closeM()">취소</button>
+        <button class="mok" onclick="okM()">추가</button>
+      </div>
     </div>
   </div>
-</div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, set, onValue, off } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, off } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-// Firebase RTDB connection (Using your existing parameters)
-const db = getDatabase(initializeApp({
-  apiKey: "AIzaSyCd9ynIwRHdIqugzMirh0nxrTWFK6ygr5M",
-  authDomain: "runtogoaltogether.firebaseapp.com",
-  databaseURL: "https://runtogoaltogether-default-rtdb.firebaseio.com",
-  projectId: "runtogoaltogether",
-  storageBucket: "runtogoaltogether.firebasestorage.app",
-  messagingSenderId: "120835868108",
-  appId: "1:120835868108:web:a9aff165e4ae8bfef70969"
-}));
+    // Firebase RTDB connection (Using your existing parameters)
+    const db = getDatabase(initializeApp({
+      apiKey: "AIzaSyCd9ynIwRHdIqugzMirh0nxrTWFK6ygr5M",
+      authDomain: "runtogoaltogether.firebaseapp.com",
+      databaseURL: "https://runtogoaltogether-default-rtdb.firebaseio.com",
+      projectId: "runtogoaltogether",
+      storageBucket: "runtogoaltogether.firebasestorage.app",
+      messagingSenderId: "120835868108",
+      appId: "1:120835868108:web:a9aff165e4ae8bfef70969"
+    }));
 
-// Admin Settings passcode (Can edit here if you want to change it)
-const ADMIN_PASSWORD = "1234";
+    // Admin Settings passcode (Can edit here if you want to change it)
+    const ADMIN_PASSWORD = "1234";
 
-const DAYS = ['월','화','수','목','금','토','일'];
-const TIMES = [];
-for (let h = 18; h <= 20; h++) {
-  TIMES.push(h + ':00');
-  TIMES.push(h + ':30');
-}
-TIMES.push('21:00');
-const COLORS = ['#378ADD','#D85A30','#1D9E75','#D4537E','#7F77DD','#BA7517','#2CBAB5','#E8762B','#639922','#993556'];
-
-let sheets = [], cur = null, data = {}, activeUser = null, dragging = false, dMode = null, dataRef = null, dataUnsub = null;
-let isAdmin = localStorage.getItem('isAdmin') === 'true';
-
-const st = t => document.getElementById('st').textContent = t;
-const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/'/g,'&#39;');
-const ha = (hex, a) => {
-  const r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16);
-  return `rgba(${r},${g},${b},${a})`;
-};
-const users = () => Object.values(data.users || {});
-
-// Load sheets with custom order support
-onValue(ref(db, 'sheets'), snap => {
-  const v = snap.val() || {};
-  // Sort ascending by custom order, fallback to creation timestamp
-  sheets = Object.values(v).sort((a, b) => (a.order ?? a.created) - (b.order ?? b.created));
-  
-  if (!sheets.length) {
-    newSheet('첫 번째 주', true);
-  } else {
-    if (!cur || !sheets.find(s => s.id === cur)) {
-      selSheet(sheets[0].id);
-    } else {
-      renderTabs();
+    const DAYS = ['월', '화', '수', '목', '금', '토', '일'];
+    const TIMES = [];
+    for (let h = 18; h <= 20; h++) {
+      TIMES.push(h + ':00');
+      TIMES.push(h + ':30');
     }
-  }
-});
+    TIMES.push('21:00');
+    const COLORS = ['#378ADD', '#D85A30', '#1D9E75', '#D4537E', '#7F77DD', '#BA7517', '#2CBAB5', '#E8762B', '#639922', '#993556'];
 
-function newSheet(label, silent) {
-  const id = Date.now();
-  const maxOrder = sheets.length ? Math.max(...sheets.map(s => s.order ?? s.created)) : id;
-  set(ref(db, 'sheets/' + id), {
-    id,
-    label: label || '새 주차',
-    created: id,
-    order: maxOrder + 1
-  });
-  if (!silent) selSheet(id);
-}
+    let sheets = [], cur = null, data = {}, activeUser = null, dragging = false, dMode = null, dataRef = null, dataUnsub = null;
+    let isAdmin = localStorage.getItem('isAdmin') === 'true';
 
-function delSheet(id) {
-  if (sheets.length <= 1) {
-    alert('마지막 시트는 삭제할 수 없어요.');
-    return;
-  }
-  if (confirm('이 시트를 정말 삭제하시겠습니까? 관련 참여자들의 예약 내역이 모두 함께 삭제됩니다.')) {
-    set(ref(db, 'sheets/' + id), null);
-    set(ref(db, 'data/' + id), null);
-    if (cur === id) {
-      selSheet(sheets.find(s => s.id !== id)?.id);
+    const st = t => document.getElementById('st').textContent = t;
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/'/g, '&#39;');
+    const ha = (hex, a) => {
+      const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+      return `rgba(${r},${g},${b},${a})`;
+    };
+    const users = () => Object.values(data.users || {});
+
+    // Load sheets with custom order support
+    onValue(ref(db, 'sheets'), snap => {
+      const v = snap.val() || {};
+      // Sort ascending by custom order, fallback to creation timestamp
+      sheets = Object.values(v).sort((a, b) => (a.order ?? a.created) - (b.order ?? b.created));
+
+      if (!sheets.length) {
+        newSheet('첫 번째 주', true);
+      } else {
+        if (!cur || !sheets.find(s => s.id === cur)) {
+          selSheet(sheets[0].id);
+        } else {
+          renderTabs();
+        }
+      }
+    });
+
+    function newSheet(label, silent) {
+      const id = Date.now();
+      const maxOrder = sheets.length ? Math.max(...sheets.map(s => s.order ?? s.created)) : id;
+      set(ref(db, 'sheets/' + id), {
+        id,
+        label: label || '새 주차',
+        created: id,
+        order: maxOrder + 1
+      });
+      if (!silent) selSheet(id);
     }
-  }
-}
 
-// Move sheet left/right by swapping order field
-function moveSheet(direction) {
-  const idx = sheets.findIndex(s => s.id === cur);
-  if (idx === -1) return;
-  
-  let targetIdx = direction === 'left' ? idx - 1 : idx + 1;
-  if (targetIdx < 0 || targetIdx >= sheets.length) return; // Out of bounds
-  
-  const currentSheet = sheets[idx];
-  const targetSheet = sheets[targetIdx];
-  
-  // Assign explicit orders to all sheets if they don't have them yet, ensuring reliability
-  sheets.forEach((s, i) => {
-    if (s.order === undefined) {
-      s.order = i;
+    function delSheet(id) {
+      if (sheets.length <= 1) {
+        alert('마지막 시트는 삭제할 수 없어요.');
+        return;
+      }
+      if (confirm('이 시트를 정말 삭제하시겠습니까? 관련 참여자들의 예약 내역이 모두 함께 삭제됩니다.')) {
+        set(ref(db, 'sheets/' + id), null);
+        set(ref(db, 'data/' + id), null);
+        if (cur === id) {
+          selSheet(sheets.find(s => s.id !== id)?.id);
+        }
+      }
     }
-  });
-  
-  const temp = currentSheet.order;
-  currentSheet.order = targetSheet.order;
-  targetSheet.order = temp;
-  
-  if (currentSheet.order === targetSheet.order) {
-    currentSheet.order = idx;
-    targetSheet.order = targetIdx;
-  }
-  
-  set(ref(db, 'sheets/' + currentSheet.id + '/order'), currentSheet.order);
-  set(ref(db, 'sheets/' + targetSheet.id + '/order'), targetSheet.order);
-}
 
-function renderTabs() {
-  const tabListHtml = sheets.map(s => {
-    const isActive = s.id === cur;
-    let tabHtml = `<div class="sheet-tab${isActive ? ' active' : ''}" onclick="_sel(${s.id})"`;
-    
-    if (isAdmin) {
-      tabHtml += ` ondblclick="_ren(${s.id})"`;
+    // Move sheet left/right by swapping order field
+    function moveSheet(direction) {
+      const idx = sheets.findIndex(s => s.id === cur);
+      if (idx === -1) return;
+
+      let targetIdx = direction === 'left' ? idx - 1 : idx + 1;
+      if (targetIdx < 0 || targetIdx >= sheets.length) return; // Out of bounds
+
+      const currentSheet = sheets[idx];
+      const targetSheet = sheets[targetIdx];
+
+      // Assign explicit orders to all sheets if they don't have them yet, ensuring reliability
+      sheets.forEach((s, i) => {
+        if (s.order === undefined) {
+          s.order = i;
+        }
+      });
+
+      const temp = currentSheet.order;
+      currentSheet.order = targetSheet.order;
+      targetSheet.order = temp;
+
+      if (currentSheet.order === targetSheet.order) {
+        currentSheet.order = idx;
+        targetSheet.order = targetIdx;
+      }
+
+      set(ref(db, 'sheets/' + currentSheet.id + '/order'), currentSheet.order);
+      set(ref(db, 'sheets/' + targetSheet.id + '/order'), targetSheet.order);
     }
-    tabHtml += `>${esc(s.label)}`;
-    
-    if (isAdmin) {
-      if (isActive) {
-        tabHtml += `
+
+    function renderTabs() {
+      const tabListHtml = sheets.map(s => {
+        const isActive = s.id === cur;
+        let tabHtml = `<div class="sheet-tab${isActive ? ' active' : ''}" onclick="_sel(${s.id})"`;
+
+        if (isAdmin) {
+          tabHtml += ` ondblclick="_ren(${s.id})"`;
+        }
+        tabHtml += `>${esc(s.label)}`;
+
+        if (isAdmin) {
+          if (isActive) {
+            tabHtml += `
           <span class="edit-btn" title="이름 수정" onclick="event.stopPropagation();_ren(${s.id})">✏️</span>
           <span class="mv-btn" title="왼쪽 이동" onclick="event.stopPropagation();_mv(${s.id}, 'left')">◀</span>
           <span class="mv-btn" title="오른쪽 이동" onclick="event.stopPropagation();_mv(${s.id}, 'right')">▶</span>
         `;
+          }
+          tabHtml += `<span class="dx" title="시트 삭제" onclick="event.stopPropagation();_del(${s.id})">✕</span>`;
+        }
+
+        tabHtml += `</div>`;
+        return tabHtml;
+      }).join('');
+
+      const addBtnHtml = isAdmin ? `<button class="add-sh" onclick="openM()">+</button>` : '';
+
+      document.getElementById('sw').innerHTML = tabListHtml + addBtnHtml;
+    }
+
+    window.lastHovered = null;
+
+    function selSheet(id) {
+      cur = id;
+      data = {};
+      activeUser = null;
+      document.body.classList.remove('drawing-active');
+      if (dataUnsub) {
+        dataUnsub();
+        dataUnsub = null;
       }
-      tabHtml += `<span class="dx" title="시트 삭제" onclick="event.stopPropagation();_del(${s.id})">✕</span>`;
+      renderTabs();
+      buildTable();
+      renderLeg();
+      updABar();
+      dataRef = ref(db, 'data/' + id);
+      dataUnsub = onValue(dataRef, snap => {
+        data = snap.val() || {};
+        st('실시간 연결됨 ✓');
+        renderLeg();
+        renderAll();
+        if (window.lastHovered) {
+          updateCellInfo(window.lastHovered.di, window.lastHovered.ti);
+        }
+      });
     }
-    
-    tabHtml += `</div>`;
-    return tabHtml;
-  }).join('');
-  
-  const addBtnHtml = isAdmin ? `<button class="add-sh" onclick="openM()">+</button>` : '';
-  
-  document.getElementById('sw').innerHTML = tabListHtml + addBtnHtml;
-}
 
-window.lastHovered = null;
-
-function selSheet(id) {
-  cur = id;
-  data = {};
-  activeUser = null;
-  document.body.classList.remove('drawing-active');
-  if (dataUnsub) {
-    dataUnsub();
-    dataUnsub = null;
-  }
-  renderTabs();
-  buildTable();
-  renderLeg();
-  updABar();
-  dataRef = ref(db, 'data/' + id);
-  dataUnsub = onValue(dataRef, snap => {
-    data = snap.val() || {};
-    st('실시간 연결됨 ✓');
-    renderLeg();
-    renderAll();
-    if (window.lastHovered) {
-      updateCellInfo(window.lastHovered.di, window.lastHovered.ti);
+    function join() {
+      const inp = document.getElementById('ni'), n = inp.value.trim();
+      if (!n) return;
+      const ul = users();
+      if (ul.find(u => u.name === n)) {
+        activeUser = ul.find(u => u.name === n);
+        renderLeg();
+        updABar();
+        document.body.classList.add('drawing-active');
+        inp.value = '';
+        inp.blur();
+        return;
+      }
+      const u = { name: n, color: COLORS[ul.length % COLORS.length] };
+      set(ref(db, 'data/' + cur + '/users/' + n), u);
+      activeUser = u;
+      inp.value = '';
+      inp.blur();
+      document.getElementById('ab').style.display = 'flex';
+      document.body.classList.add('drawing-active');
     }
-  });
-}
 
-function join() {
-  const inp = document.getElementById('ni'), n = inp.value.trim();
-  if (!n) return;
-  const ul = users();
-  if (ul.find(u => u.name === n)) {
-    activeUser = ul.find(u => u.name === n);
-    renderLeg();
-    updABar();
-    document.body.classList.add('drawing-active');
-    inp.value = '';
-    inp.blur();
-    return;
-  }
-  const u = { name: n, color: COLORS[ul.length % COLORS.length] };
-  set(ref(db, 'data/' + cur + '/users/' + n), u);
-  activeUser = u;
-  inp.value = '';
-  inp.blur();
-  document.getElementById('ab').style.display = 'flex';
-  document.body.classList.add('drawing-active');
-}
+    function rmUser(name) {
+      set(ref(db, 'data/' + cur + '/users/' + name), null);
+      set(ref(db, 'data/' + cur + '/sels/' + name), null);
+      if (activeUser?.name === name) {
+        activeUser = null;
+        updABar();
+        document.body.classList.remove('drawing-active');
+      }
+    }
 
-function rmUser(name) {
-  set(ref(db, 'data/' + cur + '/users/' + name), null);
-  set(ref(db, 'data/' + cur + '/sels/' + name), null);
-  if (activeUser?.name === name) {
-    activeUser = null;
-    updABar();
-    document.body.classList.remove('drawing-active');
-  }
-}
+    function clearMe() {
+      if (!activeUser) return;
+      set(ref(db, 'data/' + cur + '/sels/' + activeUser.name), null);
+    }
 
-function clearMe() {
-  if (!activeUser) return;
-  set(ref(db, 'data/' + cur + '/sels/' + activeUser.name), null);
-}
+    function toggle(di, ti) {
+      if (!activeUser) return;
+      const k = di + '_' + ti, cell = (data.sels && data.sels[activeUser.name]) || {};
+      if (dMode === 'add') cell[k] = 1; else delete cell[k];
+      set(ref(db, 'data/' + cur + '/sels/' + activeUser.name), Object.keys(cell).length ? cell : null);
+    }
 
-function toggle(di, ti) {
-  if (!activeUser) return;
-  const k = di + '_' + ti, cell = (data.sels && data.sels[activeUser.name]) || {};
-  if (dMode === 'add') cell[k] = 1; else delete cell[k];
-  set(ref(db, 'data/' + cur + '/sels/' + activeUser.name), Object.keys(cell).length ? cell : null);
-}
-
-function renderLeg() {
-  const ul = users(), el = document.getElementById('leg');
-  if (!ul.length) {
-    el.innerHTML = '<span style="font-size:12px;color:#9ab0c8">닉네임을 입력하고 참여하세요</span>';
-    return;
-  }
-  el.innerHTML = ul.map(u => `
+    function renderLeg() {
+      const ul = users(), el = document.getElementById('leg');
+      if (!ul.length) {
+        el.innerHTML = '<span style="font-size:12px;color:#9ab0c8">닉네임을 입력하고 참여하세요</span>';
+        return;
+      }
+      el.innerHTML = ul.map(u => `
     <div class="leg${activeUser?.name === u.name ? ' cur' : ''}" 
          style="background:${ha(u.color, 0.1)};border-color:${activeUser?.name === u.name ? u.color : 'transparent'}" 
          onclick="_sa('${esc(u.name)}')">
@@ -723,271 +787,272 @@ function renderLeg() {
       <span class="leg-x" onclick="event.stopPropagation();_rm('${esc(u.name)}')">✕</span>
     </div>
   `).join('');
-}
-
-function updABar() {
-  const b = document.getElementById('ab');
-  if (!activeUser) {
-    b.style.display = 'none';
-    document.body.classList.remove('drawing-active');
-    return;
-  }
-  b.style.display = 'flex';
-  document.getElementById('ad').style.background = activeUser.color;
-  document.getElementById('an').textContent = activeUser.name;
-}
-
-function buildTable() {
-  document.getElementById('th').innerHTML = '<tr><th class="tl"></th>' + DAYS.map(d => `<th>${d}</th>`).join('') + '</tr>';
-  document.getElementById('tb').innerHTML = TIMES.map((t, ti) => '<tr><td class="tlc"><span>' + t + '</span></td>' + DAYS.map((_, di) => `<td class="cell${t.includes(':30') ? ' half' : ''}" data-di="${di}" data-ti="${ti}"><canvas class="cv" id="c${di}_${ti}"></canvas></td>`).join('') + '</tr>').join('');
-  attachEv();
-}
-
-function renderAll() {
-  DAYS.forEach((_, di) => TIMES.forEach((_, ti) => drawCell(di, ti)));
-}
-
-function nameHash(name) {
-  let h = 0;
-  for (let i = 0; i < name.length; i++) {
-    h = (h * 31 + name.charCodeAt(i)) & 0xffffffff;
-  }
-  return (h >>> 0);
-}
-
-// Draw the glossy avatar dots with initial characters inside (Figma/Slack style, 100% overlap-free on mobile!)
-function drawCell(di, ti) {
-  const cv = document.getElementById('c' + di + '_' + ti);
-  if (!cv) return;
-  const td = cv.parentElement, w = td.offsetWidth || 52, h = td.offsetHeight || 52;
-  cv.width = w;
-  cv.height = h;
-  const ctx = cv.getContext('2d');
-  ctx.clearRect(0, 0, w, h);
-  const k = di + '_' + ti;
-  const present = users().filter(u => data.sels?.[u.name]?.[k]);
-  const N = present.length;
-  if (!N) return;
-  
-  // R = 8.5 (Diameter = 17px) is the sweet spot for showing a clear initial letter on mobile
-  const R = 8.5; 
-  
-  // Arrange round avatars in dynamic rows/columns with slight overlaps for beautiful multi-user stacks
-  let cols = 1, rows = 1;
-  if (N === 2) {
-    cols = 2; rows = 1;
-  } else if (N === 3 || N === 4) {
-    cols = 2; rows = 2;
-  } else if (N === 5 || N === 6) {
-    cols = 2; rows = 3;
-  } else {
-    cols = 3; rows = Math.ceil(N / 3);
-  }
-  
-  present.forEach((u, i) => {
-    const c = i % cols;
-    const r = Math.floor(i / cols);
-    
-    // Boundary paddings to keep all avatar dots within cell grid
-    const padX = R + 4;
-    const padY = R + 4;
-    
-    const aw = w - padX * 2;
-    const ah = h - padY * 2;
-    
-    let x = padX + (cols > 1 ? (c / (cols - 1)) * aw : aw / 2);
-    let y = padY + (rows > 1 ? (r / (rows - 1)) * ah : ah / 2);
-    
-    // Balanced horizontal alignment for uneven items in the last row
-    if (r === rows - 1 && N % cols === 1 && i === N - 1) {
-      x = w / 2;
-    } else if (r === rows - 1 && N % cols === 2 && cols === 3 && i >= N - 2) {
-      const cSub = i - (N - 2);
-      x = padX + aw * 0.25 + cSub * aw * 0.5;
     }
-    
-    // 1. Draw avatar outer white border separator (Slack/Figma style overlapping)
-    ctx.beginPath();
-    ctx.arc(x, y, R + 0.8, 0, Math.PI * 2);
-    ctx.fillStyle = '#ffffff';
-    ctx.fill();
-    
-    // 2. Draw avatar solid background color
-    ctx.beginPath();
-    ctx.arc(x, y, R, 0, Math.PI * 2);
-    ctx.fillStyle = u.color;
-    ctx.fill();
-    
-    // 3. Draw initial letter inside the avatar dot (perfectly centered, zero floating labels!)
-    const initial = u.name ? u.name.charAt(0) : '?';
-    ctx.font = 'bold 9.5px "Pretendard", -apple-system, sans-serif';
-    ctx.fillStyle = '#ffffff';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(initial, x, y + 0.5); // Micro vertical offset for visual baseline centering
-  });
-}
 
-// Update the premium dynamic info pill with detail lists
-function updateCellInfo(di, ti) {
-  window.lastHovered = { di, ti };
-  const k = di + '_' + ti;
-  const present = users().filter(u => data.sels?.[u.name]?.[k]);
-  const dayName = DAYS[di];
-  const timeName = TIMES[ti];
-  const infoEl = document.getElementById('cellInfo');
-  if (!infoEl) return;
-  
-  if (present.length > 0) {
-    const names = present.map(u => u.name).join(', ');
-    infoEl.innerHTML = `📅 <strong>${dayName}요일 ${timeName}</strong> (${present.length}명): <span style="color: #185fa5; font-weight: 700;">${names}</span>`;
-  } else {
-    infoEl.innerHTML = `📅 <strong>${dayName}요일 ${timeName}</strong>: 참여자 없음`;
-  }
-}
-
-// Mobile/desktop grid event listeners
-function attachEv() {
-  document.querySelectorAll('td.cell').forEach(td => {
-    const di = +td.dataset.di, ti = +td.dataset.ti;
-    
-    // Touch Interaction (Mobile) - also displays details for any user
-    td.addEventListener('touchstart', e => {
-      updateCellInfo(di, ti);
-      if (!activeUser) return;
-      e.preventDefault(); // Lock scroll while interacting
-      dragging = true;
-      dMode = (data.sels?.[activeUser.name]?.[di + '_' + ti]) ? 'remove' : 'add';
-      toggle(di, ti);
-    }, { passive: false });
-    
-    td.addEventListener('touchmove', e => {
-      if (!dragging || !activeUser) return;
-      e.preventDefault();
-      const t = e.touches[0];
-      const el = document.elementFromPoint(t.clientX, t.clientY);
-      const c = el?.classList.contains('cell') ? el : el?.closest?.('td.cell');
-      if (c) {
-        const ndi = +c.dataset.di, nti = +c.dataset.ti;
-        toggle(ndi, nti);
-        updateCellInfo(ndi, nti);
+    function updABar() {
+      const b = document.getElementById('ab');
+      if (!activeUser) {
+        b.style.display = 'none';
+        document.body.classList.remove('drawing-active');
+        return;
       }
-    }, { passive: false });
-    
-    // Mouse Interaction (Desktop)
-    td.addEventListener('mousedown', e => {
-      updateCellInfo(di, ti);
-      if (!activeUser) return;
-      e.preventDefault();
-      dragging = true;
-      dMode = (data.sels?.[activeUser.name]?.[di + '_' + ti]) ? 'remove' : 'add';
-      toggle(di, ti);
-    });
-    
-    td.addEventListener('mouseenter', () => {
-      updateCellInfo(di, ti);
-      if (dragging && activeUser) {
-        toggle(di, ti);
+      b.style.display = 'flex';
+      document.getElementById('ad').style.background = activeUser.color;
+      document.getElementById('an').textContent = activeUser.name;
+    }
+
+    function buildTable() {
+      document.getElementById('th').innerHTML = '<tr><th class="tl"></th>' + DAYS.map(d => `<th>${d}</th>`).join('') + '</tr>';
+      document.getElementById('tb').innerHTML = TIMES.map((t, ti) => '<tr><td class="tlc"><span>' + t + '</span></td>' + DAYS.map((_, di) => `<td class="cell${t.includes(':30') ? ' half' : ''}" data-di="${di}" data-ti="${ti}"><canvas class="cv" id="c${di}_${ti}"></canvas></td>`).join('') + '</tr>').join('');
+      attachEv();
+    }
+
+    function renderAll() {
+      DAYS.forEach((_, di) => TIMES.forEach((_, ti) => drawCell(di, ti)));
+    }
+
+    function nameHash(name) {
+      let h = 0;
+      for (let i = 0; i < name.length; i++) {
+        h = (h * 31 + name.charCodeAt(i)) & 0xffffffff;
       }
-    });
-  });
-}
-
-// Global window event listeners (declared only once outside cell initialization loop)
-document.addEventListener('mouseup', () => { dragging = false; });
-document.addEventListener('touchend', () => { dragging = false; });
-window.addEventListener('resize', renderAll);
-
-// Expose admin trigger and utility functions to window for HTML event bindings
-window.toggleAdminMode = () => {
-  if (isAdmin) {
-    if (confirm('관리자 모드를 로그아웃하시겠습니까?')) {
-      isAdmin = false;
-      localStorage.setItem('isAdmin', 'false');
-      updateAdminUI();
+      return (h >>> 0);
     }
-  } else {
-    const pw = prompt('관리자 비밀번호를 입력하세요:');
-    if (pw === null) return;
-    if (pw === ADMIN_PASSWORD) {
-      isAdmin = true;
-      localStorage.setItem('isAdmin', 'true');
-      alert('관리자 모드가 활성화되었습니다!');
-      updateAdminUI();
-    } else {
-      alert('비밀번호가 올바르지 않습니다.');
+
+    // Draw the glossy avatar dots with initial characters inside (Figma/Slack style, 100% overlap-free on mobile!)
+    function drawCell(di, ti) {
+      const cv = document.getElementById('c' + di + '_' + ti);
+      if (!cv) return;
+      const td = cv.parentElement, w = td.offsetWidth || 52, h = td.offsetHeight || 52;
+      cv.width = w;
+      cv.height = h;
+      const ctx = cv.getContext('2d');
+      ctx.clearRect(0, 0, w, h);
+      const k = di + '_' + ti;
+      const present = users().filter(u => data.sels?.[u.name]?.[k]);
+      const N = present.length;
+      if (!N) return;
+
+      // R = 8.5 (Diameter = 17px) is the sweet spot for showing a clear initial letter on mobile
+      const R = 8.5;
+
+      // Arrange round avatars in dynamic rows/columns with slight overlaps for beautiful multi-user stacks
+      let cols = 1, rows = 1;
+      if (N === 2) {
+        cols = 2; rows = 1;
+      } else if (N === 3 || N === 4) {
+        cols = 2; rows = 2;
+      } else if (N === 5 || N === 6) {
+        cols = 2; rows = 3;
+      } else {
+        cols = 3; rows = Math.ceil(N / 3);
+      }
+
+      present.forEach((u, i) => {
+        const c = i % cols;
+        const r = Math.floor(i / cols);
+
+        // Boundary paddings to keep all avatar dots within cell grid
+        const padX = R + 4;
+        const padY = R + 4;
+
+        const aw = w - padX * 2;
+        const ah = h - padY * 2;
+
+        let x = padX + (cols > 1 ? (c / (cols - 1)) * aw : aw / 2);
+        let y = padY + (rows > 1 ? (r / (rows - 1)) * ah : ah / 2);
+
+        // Balanced horizontal alignment for uneven items in the last row
+        if (r === rows - 1 && N % cols === 1 && i === N - 1) {
+          x = w / 2;
+        } else if (r === rows - 1 && N % cols === 2 && cols === 3 && i >= N - 2) {
+          const cSub = i - (N - 2);
+          x = padX + aw * 0.25 + cSub * aw * 0.5;
+        }
+
+        // 1. Draw avatar outer white border separator (Slack/Figma style overlapping)
+        ctx.beginPath();
+        ctx.arc(x, y, R + 0.8, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        // 2. Draw avatar solid background color
+        ctx.beginPath();
+        ctx.arc(x, y, R, 0, Math.PI * 2);
+        ctx.fillStyle = u.color;
+        ctx.fill();
+
+        // 3. Draw initial letter inside the avatar dot (perfectly centered, zero floating labels!)
+        const initial = u.name ? u.name.charAt(0) : '?';
+        ctx.font = 'bold 9.5px "Pretendard", -apple-system, sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(initial, x, y + 0.5); // Micro vertical offset for visual baseline centering
+      });
     }
-  }
-};
 
-function updateAdminUI() {
-  const lockBtn = document.getElementById('lockBtn');
-  if (isAdmin) {
-    lockBtn.innerHTML = '<span class="lock-icon">🔓</span> <span class="lock-txt">관리자 모드</span>';
-    lockBtn.classList.add('unlocked');
-  } else {
-    lockBtn.innerHTML = '<span class="lock-icon">🔒</span> <span class="lock-txt">관리자 로그인</span>';
-    lockBtn.classList.remove('unlocked');
-  }
-  renderTabs();
-}
+    // Update the premium dynamic info pill with detail lists
+    function updateCellInfo(di, ti) {
+      window.lastHovered = { di, ti };
+      const k = di + '_' + ti;
+      const present = users().filter(u => data.sels?.[u.name]?.[k]);
+      const dayName = DAYS[di];
+      const timeName = TIMES[ti];
+      const infoEl = document.getElementById('cellInfo');
+      if (!infoEl) return;
 
-// Initialize Admin UI State
-updateAdminUI();
+      if (present.length > 0) {
+        const names = present.map(u => u.name).join(', ');
+        infoEl.innerHTML = `📅 <strong>${dayName}요일 ${timeName}</strong> (${present.length}명): <span style="color: #185fa5; font-weight: 700;">${names}</span>`;
+      } else {
+        infoEl.innerHTML = `📅 <strong>${dayName}요일 ${timeName}</strong>: 참여자 없음`;
+      }
+    }
 
-document.getElementById('ni').addEventListener('keydown', e => { if (e.key === 'Enter') join(); });
+    // Mobile/desktop grid event listeners
+    function attachEv() {
+      document.querySelectorAll('td.cell').forEach(td => {
+        const di = +td.dataset.di, ti = +td.dataset.ti;
 
-window.join = join;
-window.clearMe = clearMe;
-window._sel = selSheet;
-window._ren = id => {
-  if (!isAdmin) return;
-  const s = sheets.find(x => x.id === id);
-  if (!s) return;
-  const n = prompt('시트 이름 변경:', s.label);
-  if (n && n.trim()) {
-    set(ref(db, 'sheets/' + id + '/label'), n.trim());
-  }
-};
-window._del = id => {
-  if (!isAdmin) return;
-  delSheet(id);
-};
-window._mv = (id, direction) => {
-  if (!isAdmin) return;
-  moveSheet(direction);
-};
-window._sa = name => {
-  activeUser = users().find(u => u.name === name);
-  renderLeg();
-  updABar();
-  if (activeUser) {
-    document.body.classList.add('drawing-active');
-  } else {
-    document.body.classList.remove('drawing-active');
-  }
-};
-window._rm = rmUser;
+        // Touch Interaction (Mobile) - also displays details for any user
+        td.addEventListener('touchstart', e => {
+          updateCellInfo(di, ti);
+          if (!activeUser) return;
+          e.preventDefault(); // Lock scroll while interacting
+          dragging = true;
+          dMode = (data.sels?.[activeUser.name]?.[di + '_' + ti]) ? 'remove' : 'add';
+          toggle(di, ti);
+        }, { passive: false });
 
-window.openM = () => {
-  if (!isAdmin) return;
-  const d = new Date();
-  document.getElementById('mi').value = `${d.getMonth() + 1}/${d.getDate()} 주`;
-  document.getElementById('modal').classList.add('show');
-  setTimeout(() => document.getElementById('mi').focus(), 100);
-};
-window.closeM = () => document.getElementById('modal').classList.remove('show');
-window.okM = () => {
-  if (!isAdmin) return;
-  const n = document.getElementById('mi').value.trim();
-  if (n) {
-    newSheet(n);
-    closeM();
-  }
-};
+        td.addEventListener('touchmove', e => {
+          if (!dragging || !activeUser) return;
+          e.preventDefault();
+          const t = e.touches[0];
+          const el = document.elementFromPoint(t.clientX, t.clientY);
+          const c = el?.classList.contains('cell') ? el : el?.closest?.('td.cell');
+          if (c) {
+            const ndi = +c.dataset.di, nti = +c.dataset.ti;
+            toggle(ndi, nti);
+            updateCellInfo(ndi, nti);
+          }
+        }, { passive: false });
 
-document.getElementById('modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeM(); });
-document.getElementById('mi').addEventListener('keydown', e => { if (e.key === 'Enter') okM(); });
-</script>
+        // Mouse Interaction (Desktop)
+        td.addEventListener('mousedown', e => {
+          updateCellInfo(di, ti);
+          if (!activeUser) return;
+          e.preventDefault();
+          dragging = true;
+          dMode = (data.sels?.[activeUser.name]?.[di + '_' + ti]) ? 'remove' : 'add';
+          toggle(di, ti);
+        });
+
+        td.addEventListener('mouseenter', () => {
+          updateCellInfo(di, ti);
+          if (dragging && activeUser) {
+            toggle(di, ti);
+          }
+        });
+      });
+    }
+
+    // Global window event listeners (declared only once outside cell initialization loop)
+    document.addEventListener('mouseup', () => { dragging = false; });
+    document.addEventListener('touchend', () => { dragging = false; });
+    window.addEventListener('resize', renderAll);
+
+    // Expose admin trigger and utility functions to window for HTML event bindings
+    window.toggleAdminMode = () => {
+      if (isAdmin) {
+        if (confirm('관리자 모드를 로그아웃하시겠습니까?')) {
+          isAdmin = false;
+          localStorage.setItem('isAdmin', 'false');
+          updateAdminUI();
+        }
+      } else {
+        const pw = prompt('관리자 비밀번호를 입력하세요:');
+        if (pw === null) return;
+        if (pw === ADMIN_PASSWORD) {
+          isAdmin = true;
+          localStorage.setItem('isAdmin', 'true');
+          alert('관리자 모드가 활성화되었습니다!');
+          updateAdminUI();
+        } else {
+          alert('비밀번호가 올바르지 않습니다.');
+        }
+      }
+    };
+
+    function updateAdminUI() {
+      const lockBtn = document.getElementById('lockBtn');
+      if (isAdmin) {
+        lockBtn.innerHTML = '<span class="lock-icon">🔓</span> <span class="lock-txt">관리자 모드</span>';
+        lockBtn.classList.add('unlocked');
+      } else {
+        lockBtn.innerHTML = '<span class="lock-icon">🔒</span> <span class="lock-txt">관리자 로그인</span>';
+        lockBtn.classList.remove('unlocked');
+      }
+      renderTabs();
+    }
+
+    // Initialize Admin UI State
+    updateAdminUI();
+
+    document.getElementById('ni').addEventListener('keydown', e => { if (e.key === 'Enter') join(); });
+
+    window.join = join;
+    window.clearMe = clearMe;
+    window._sel = selSheet;
+    window._ren = id => {
+      if (!isAdmin) return;
+      const s = sheets.find(x => x.id === id);
+      if (!s) return;
+      const n = prompt('시트 이름 변경:', s.label);
+      if (n && n.trim()) {
+        set(ref(db, 'sheets/' + id + '/label'), n.trim());
+      }
+    };
+    window._del = id => {
+      if (!isAdmin) return;
+      delSheet(id);
+    };
+    window._mv = (id, direction) => {
+      if (!isAdmin) return;
+      moveSheet(direction);
+    };
+    window._sa = name => {
+      activeUser = users().find(u => u.name === name);
+      renderLeg();
+      updABar();
+      if (activeUser) {
+        document.body.classList.add('drawing-active');
+      } else {
+        document.body.classList.remove('drawing-active');
+      }
+    };
+    window._rm = rmUser;
+
+    window.openM = () => {
+      if (!isAdmin) return;
+      const d = new Date();
+      document.getElementById('mi').value = `${d.getMonth() + 1}/${d.getDate()} 주`;
+      document.getElementById('modal').classList.add('show');
+      setTimeout(() => document.getElementById('mi').focus(), 100);
+    };
+    window.closeM = () => document.getElementById('modal').classList.remove('show');
+    window.okM = () => {
+      if (!isAdmin) return;
+      const n = document.getElementById('mi').value.trim();
+      if (n) {
+        newSheet(n);
+        closeM();
+      }
+    };
+
+    document.getElementById('modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeM(); });
+    document.getElementById('mi').addEventListener('keydown', e => { if (e.key === 'Enter') okM(); });
+  </script>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 {
-  "name": "Navi-Run Sched",
-  "short_name": "Navi-Run Sched",
+  "name": "Navi-Running Sched",
+  "short_name": "Navi-Running Sched",
   "description": "목표는 달라도 함께 뛰면 즐거우니까!",
   "start_url": "./index.html",
   "display": "standalone",
