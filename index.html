@@ -711,20 +711,7 @@ function nameHash(name) {
   return (h >>> 0);
 }
 
-// Pseudo-random deterministic placement that is uniform and identical across all cells
-function userPos(name, w, h, R) {
-  const padX = R + 5;
-  const padYTop = R + 11; // Reserved space above the dot for the nickname text
-  const padYBot = R + 4;
-  const aw = w - padX * 2;
-  const ah = h - (padYTop + padYBot);
-  const s = nameHash(name);
-  const x = padX + (((s * 1664525 + 1013904223) & 0xffffffff) >>> 0) / 0xffffffff * aw;
-  const y = padYTop + (((s * 22695477 + 1) & 0xffffffff) >>> 0) / 0xffffffff * ah;
-  return [x, y];
-}
-
-// Draw the glossy dots with their full nickname labels above them
+// Draw the glossy dots with their full nickname labels above them in a clean, non-overlapping grid
 function drawCell(di, ti) {
   const cv = document.getElementById('c' + di + '_' + ti);
   if (!cv) return;
@@ -735,11 +722,46 @@ function drawCell(di, ti) {
   ctx.clearRect(0, 0, w, h);
   const k = di + '_' + ti;
   const present = users().filter(u => data.sels?.[u.name]?.[k]);
-  if (!present.length) return;
+  const N = present.length;
+  if (!N) return;
   
-  const R = 5; // Dot radius
-  present.forEach(u => {
-    const [x, y] = userPos(u.name, w, h, R);
+  const R = 4.5; // Optimized dot radius
+  
+  // Intelligent dynamic grid configuration based on user count
+  let cols = 1, rows = 1;
+  if (N === 2) {
+    cols = 2; rows = 1;
+  } else if (N === 3 || N === 4) {
+    cols = 2; rows = 2;
+  } else if (N === 5 || N === 6) {
+    cols = 2; rows = 3;
+  } else {
+    cols = 3; rows = Math.ceil(N / 3);
+  }
+  
+  present.forEach((u, i) => {
+    const c = i % cols;
+    const r = Math.floor(i / cols);
+    
+    // Dynamic padding boundaries
+    const padX = R + 5;
+    const padYTop = R + 11; // Reserved text space
+    const padYBot = R + 3;
+    
+    const aw = w - padX * 2;
+    const ah = h - (padYTop + padYBot);
+    
+    let x = padX + (cols > 1 ? (c / (cols - 1)) * aw : aw / 2);
+    let y = padYTop + (rows > 1 ? (r / (rows - 1)) * ah : ah / 2);
+    
+    // Aesthetic horizontal centering for last-row edge cases
+    if (r === rows - 1 && N % cols === 1 && i === N - 1) {
+      x = w / 2; // Center a single remaining dot horizontally
+    } else if (r === rows - 1 && N % cols === 2 && cols === 3 && i >= N - 2) {
+      // Balance two remaining dots in a 3-column grid
+      const cSub = i - (N - 2);
+      x = padX + aw * 0.25 + cSub * aw * 0.5;
+    }
     
     // Draw the dot base
     ctx.beginPath();
