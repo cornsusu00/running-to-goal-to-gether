@@ -281,7 +281,8 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
-  min-width: 360px;
+  min-width: 320px;
+  margin: 0 auto;
 }
 th {
   font-size: 11px;
@@ -397,6 +398,26 @@ canvas.cv {
 .mcancel {
   background: #f0f7ff;
   color: #5a7a9a;
+}
+
+/* Premium Mobile Responsiveness Options */
+@media (max-width: 480px) {
+  .content {
+    padding: 14px 8px 24px;
+  }
+  th.tl, td.tlc {
+    width: 38px;
+  }
+  td.tlc {
+    padding-right: 4px;
+    font-size: 9.5px;
+  }
+  th {
+    font-size: 10px;
+  }
+  td.cell {
+    height: 48px; /* Slightly adjust height for compact thumb grid drawing */
+  }
 }
 </style>
 </head>
