@@ -583,7 +583,6 @@
       TIMES.push(h + ':00');
       TIMES.push(h + ':30');
     }
-    TIMES.push('21:00');
     const COLORS = ['#378ADD', '#D85A30', '#1D9E75', '#D4537E', '#7F77DD', '#BA7517', '#2CBAB5', '#E8762B', '#639922', '#993556'];
 
     let sheets = [], cur = null, data = {}, activeUser = null, dragging = false, dMode = null, dataRef = null, dataUnsub = null;
@@ -720,6 +719,18 @@
       dataUnsub = onValue(dataRef, snap => {
         data = snap.val() || {};
         st('실시간 연결됨 ✓');
+        
+        // 내 닉네임이 존재하면 자동으로 선택 상태 유지
+        const myNick = localStorage.getItem('scheduler_my_nick');
+        if (myNick && !activeUser) {
+          const found = users().find(u => u.name === myNick);
+          if (found) {
+            activeUser = found;
+            document.body.classList.add('drawing-active');
+            updABar();
+          }
+        }
+        
         renderLeg();
         renderAll();
         if (window.lastHovered) {
@@ -731,6 +742,10 @@
     function join() {
       const inp = document.getElementById('ni'), n = inp.value.trim();
       if (!n) return;
+      
+      // 내 닉네임을 로컬 스토리지에 기억
+      localStorage.setItem('scheduler_my_nick', n);
+      
       const ul = users();
       if (ul.find(u => u.name === n)) {
         activeUser = ul.find(u => u.name === n);
@@ -751,12 +766,22 @@
     }
 
     function rmUser(name) {
-      set(ref(db, 'data/' + cur + '/users/' + name), null);
-      set(ref(db, 'data/' + cur + '/sels/' + name), null);
-      if (activeUser?.name === name) {
-        activeUser = null;
-        updABar();
-        document.body.classList.remove('drawing-active');
+      const myNick = localStorage.getItem('scheduler_my_nick');
+      if (!isAdmin && myNick !== name) {
+        alert('본인의 닉네임만 삭제할 수 있습니다.');
+        return;
+      }
+      if (confirm(`'${name}' 참여 정보를 삭제하시겠습니까? 표시한 예약 내역이 함께 삭제됩니다.`)) {
+        set(ref(db, 'data/' + cur + '/users/' + name), null);
+        set(ref(db, 'data/' + cur + '/sels/' + name), null);
+        if (activeUser?.name === name) {
+          activeUser = null;
+          updABar();
+          document.body.classList.remove('drawing-active');
+        }
+        if (myNick === name) {
+          localStorage.removeItem('scheduler_my_nick');
+        }
       }
     }
 
@@ -778,15 +803,29 @@
         el.innerHTML = '<span style="font-size:12px;color:#9ab0c8">닉네임을 입력하고 참여하세요</span>';
         return;
       }
-      el.innerHTML = ul.map(u => `
-    <div class="leg${activeUser?.name === u.name ? ' cur' : ''}" 
-         style="background:${ha(u.color, 0.1)};border-color:${activeUser?.name === u.name ? u.color : 'transparent'}" 
-         onclick="_sa('${esc(u.name)}')">
-      <span class="leg-dot" style="background:${u.color}"></span>
-      <span style="color:#1a1a2e;font-weight:600">${esc(u.name)}</span>
-      <span class="leg-x" onclick="event.stopPropagation();_rm('${esc(u.name)}')">✕</span>
-    </div>
-  `).join('');
+      const myNick = localStorage.getItem('scheduler_my_nick');
+      el.innerHTML = ul.map(u => {
+        const isMe = u.name === myNick;
+        const isActive = activeUser?.name === u.name;
+        const canSelect = isAdmin || isMe;
+        const showX = isAdmin || isMe;
+        
+        const borderStyle = isActive ? u.color : 'transparent';
+        const cursorStyle = canSelect ? 'pointer' : 'default';
+        const nameText = isMe ? `${esc(u.name)} (나)` : esc(u.name);
+        const xHtml = showX ? `<span class="leg-x" onclick="event.stopPropagation();_rm('${esc(u.name)}')">✕</span>` : '';
+        const clickAttr = canSelect ? `onclick="_sa('${esc(u.name)}')"` : '';
+        
+        return `
+          <div class="leg${isActive ? ' cur' : ''}" 
+               style="background:${ha(u.color, 0.1)};border-color:${borderStyle};cursor:${cursorStyle}" 
+               ${clickAttr}>
+            <span class="leg-dot" style="background:${u.color}"></span>
+            <span style="color:#1a1a2e;font-weight:600">${nameText}</span>
+            ${xHtml}
+          </div>
+        `;
+      }).join('');
     }
 
     function updABar() {
@@ -1022,6 +1061,10 @@
       moveSheet(direction);
     };
     window._sa = name => {
+      const myNick = localStorage.getItem('scheduler_my_nick');
+      if (!isAdmin && myNick !== name) {
+        return;
+      }
       activeUser = users().find(u => u.name === name);
       renderLeg();
       updABar();
