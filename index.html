@@ -6,7 +6,7 @@
 <title>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</title>
 <!-- Open Graph Meta Tags for Premium KakaoTalk Links -->
 <meta property="og:title" content="🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️">
-<meta property="og:description" content="목표는 달라도 함께 뛰면 즐거우니까! 매일매일 더 건강해지는 우리들의 달리기🏡">
+<meta property="og:description" content="목표는 달라도 함께 뛰면 즐거우니까!">
 <meta property="og:image" content="https://cornsusu00.github.io/running-to-goal-to-gether/og_preview_cute.png">
 <meta property="og:url" content="https://cornsusu00.github.io/running-to-goal-to-gether/">
 <meta property="og:type" content="website">
@@ -321,12 +321,18 @@ th.tl {
 }
 td.tlc {
   width: 44px;
-  font-size: 10px;
-  color: #9ab0c8;
-  text-align: right;
-  padding-right: 6px;
-  vertical-align: middle;
+  position: relative;
   border: none;
+  vertical-align: top;
+}
+td.tlc span {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  transform: translateY(-50%);
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #8fa5bc;
   white-space: nowrap;
 }
 td.cell {
@@ -733,7 +739,7 @@ function updABar() {
 
 function buildTable() {
   document.getElementById('th').innerHTML = '<tr><th class="tl"></th>' + DAYS.map(d => `<th>${d}</th>`).join('') + '</tr>';
-  document.getElementById('tb').innerHTML = TIMES.map((t, ti) => '<tr><td class="tlc">' + t + '</td>' + DAYS.map((_, di) => `<td class="cell${t.includes(':30') ? ' half' : ''}" data-di="${di}" data-ti="${ti}"><canvas class="cv" id="c${di}_${ti}"></canvas></td>`).join('') + '</tr>').join('');
+  document.getElementById('tb').innerHTML = TIMES.map((t, ti) => '<tr><td class="tlc"><span>' + t + '</span></td>' + DAYS.map((_, di) => `<td class="cell${t.includes(':30') ? ' half' : ''}" data-di="${di}" data-ti="${ti}"><canvas class="cv" id="c${di}_${ti}"></canvas></td>`).join('') + '</tr>').join('');
   attachEv();
 }
 

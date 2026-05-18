@@ -1,7 +1,7 @@
 {
   "name": "Navi-Run Sched",
   "short_name": "Navi-Run Sched",
-  "description": "목표는 달라도 함께 뛰면 즐거우니까! 매일매일 더 건강해지는 우리들의 달리기🏡",
+  "description": "목표는 달라도 함께 뛰면 즐거우니까!",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f5f9fc",
