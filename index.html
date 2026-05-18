@@ -3,264 +3,881 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</title>
+<title>?룂?뤋?띯?截뤴띯옟截??щ떇?먯꽌 ?뗭궡源뚯? ?ㅈ?뤋?띯?截?/title>
+<!-- Beautiful Pretendard Font for Korean Text Clarity -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f7fb;min-height:100vh}
-h1{font-size:17px;font-weight:600;padding:14px 16px 0;color:#1a1a2e}
-.sheets-wrap{display:flex;align-items:flex-end;overflow-x:auto;padding:10px 16px 0;scrollbar-width:none;border-bottom:2px solid #c8dff5}
-.sheets-wrap::-webkit-scrollbar{display:none}
-.sheet-tab{flex-shrink:0;padding:7px 12px;font-size:12px;color:#5a7a9a;border:1.5px solid #c8dff5;border-bottom:none;border-radius:8px 8px 0 0;background:#f0f7ff;cursor:pointer;margin-right:3px;white-space:nowrap;position:relative;bottom:-2px}
-.sheet-tab.active{background:#fff;color:#185fa5;font-weight:600;border-bottom:2px solid #fff;z-index:1}
-.dx{margin-left:5px;font-size:10px;opacity:0.35}
-.add-sh{flex-shrink:0;width:30px;height:30px;border:1.5px dashed #c8dff5;border-radius:8px;background:transparent;color:#5a7a9a;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-bottom:2px}
-.content{background:#fff;padding:14px 16px 24px}
-.status{font-size:11px;color:#9ab0c8;margin-bottom:8px;min-height:16px}
-.entry-row{display:flex;gap:8px;margin-bottom:12px}
-.nick-inp{flex:1;height:44px;border:1.5px solid #b5d4f4;border-radius:10px;padding:0 12px;font-size:15px;color:#1a1a2e;background:#fff;-webkit-appearance:none}
-.nick-inp:focus{outline:none;border-color:#378add}
-.join-btn{height:44px;padding:0 20px;border:none;border-radius:10px;background:#378add;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
-.join-btn:active{background:#185fa5}
-.legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;min-height:20px}
-.leg{display:flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px 4px 7px;border-radius:20px;cursor:pointer;border:1.5px solid transparent}
-.leg.cur{border-width:1.5px;border-style:solid}
-.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.leg-x{font-size:10px;opacity:0.35;margin-left:2px}
-.abar{display:none;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.adot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.aname{font-size:13px;font-weight:600;color:#1a1a2e}
-.ahint{font-size:12px;color:#7a95b0}
-.clr-btn{margin-left:auto;padding:6px 12px;border:1.5px solid #c8dff5;border-radius:8px;background:#fff;color:#5a7a9a;font-size:12px;cursor:pointer}
-.grid-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{border-collapse:collapse;table-layout:fixed;width:100%;min-width:360px}
-th{font-size:11px;font-weight:600;color:#5a7a9a;padding:4px 2px;text-align:center}
-th.tl{width:44px}
-td.tlc{width:44px;font-size:10px;color:#9ab0c8;text-align:right;padding-right:6px;vertical-align:middle;border:none;white-space:nowrap}
-td.cell{border:1px solid #c8dff5;height:52px;position:relative;user-select:none;cursor:pointer;background:#fff}
-td.cell.half{border-top:1px dashed #d8eaf8}
-canvas.cv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:block}
-.hint-txt{font-size:11px;color:#a0b8cc;margin-top:10px;text-align:center}
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;align-items:center;justify-content:center}
-.modal-bg.show{display:flex}
-.modal-box{background:#fff;border-radius:16px;padding:20px;width:280px;max-width:90vw}
-.modal-box h3{font-size:15px;font-weight:600;margin-bottom:12px;color:#1a1a2e}
-.modal-inp{width:100%;height:44px;border:1.5px solid #b5d4f4;border-radius:10px;padding:0 12px;font-size:15px;color:#1a1a2e;-webkit-appearance:none}
-.modal-inp:focus{outline:none;border-color:#378add}
-.mbtns{display:flex;gap:8px;margin-top:12px}
-.mbtns button{flex:1;height:40px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none}
-.mok{background:#378add;color:#fff}
-.mok:active{background:#185fa5}
-.mcancel{background:#f0f7ff;color:#5a7a9a}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+/* Modern Header Wrap with Admin Lock */
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 10px;
+  background: #fff;
+  border-bottom: 1.5px solid #e1efff;
+}
+h1 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.admin-lock-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f0f7ff;
+  border: 1.5px solid #c8dff5;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #5a7a9a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.admin-lock-btn:hover {
+  background: #e1efff;
+}
+.admin-lock-btn.unlocked {
+  background: #e6f9ed;
+  border-color: #a3e4cd;
+  color: #157a54;
+}
+.admin-lock-btn.unlocked:hover {
+  background: #d5f5e0;
+}
+
+.sheets-wrap {
+  display: flex;
+  align-items: flex-end;
+  overflow-x: auto;
+  padding: 10px 16px 0;
+  scrollbar-width: none;
+  border-bottom: 2px solid #c8dff5;
+}
+.sheets-wrap::-webkit-scrollbar {
+  display: none;
+}
+.sheet-tab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 7px 12px;
+  font-size: 12px;
+  color: #5a7a9a;
+  border: 1.5px solid #c8dff5;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background: #f0f7ff;
+  cursor: pointer;
+  margin-right: 3px;
+  white-space: nowrap;
+  position: relative;
+  bottom: -2px;
+  transition: all 0.2s ease;
+}
+.sheet-tab.active {
+  background: #fff;
+  color: #185fa5;
+  font-weight: 700;
+  border-bottom: 2px solid #fff;
+  z-index: 1;
+}
+
+/* Tab Admin Control Buttons */
+.sheet-tab .edit-btn {
+  margin-left: 2px;
+  font-size: 10px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.sheet-tab .edit-btn:hover {
+  opacity: 1;
+}
+.sheet-tab .mv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  font-size: 8px;
+  background: #e1f0ff;
+  color: #185fa5;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sheet-tab .mv-btn:hover {
+  background: #185fa5;
+  color: #fff;
+}
+.dx {
+  margin-left: 4px;
+  font-size: 10px;
+  opacity: 0.35;
+  transition: opacity 0.2s;
+}
+.dx:hover {
+  opacity: 1;
+  color: #d85a30;
+}
+
+.add-sh {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: 1.5px dashed #c8dff5;
+  border-radius: 8px;
+  background: transparent;
+  color: #5a7a9a;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+  transition: all 0.2s;
+}
+.add-sh:hover {
+  background: #f0f7ff;
+  border-style: solid;
+}
+
+.content {
+  background: #fff;
+  padding: 14px 16px 24px;
+}
+.status {
+  font-size: 11px;
+  color: #9ab0c8;
+  margin-bottom: 8px;
+  min-height: 16px;
+}
+.entry-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.nick-inp {
+  flex: 1;
+  height: 44px;
+  border: 1.5px solid #b5d4f4;
+  border-radius: 10px;
+  padding: 0 12px;
+  font-size: 15px;
+  color: #1a1a2e;
+  background: #fff;
+  -webkit-appearance: none;
+}
+.nick-inp:focus {
+  outline: none;
+  border-color: #378add;
+}
+.join-btn {
+  height: 44px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 10px;
+  background: #378add;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.join-btn:active {
+  background: #185fa5;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  min-height: 20px;
+}
+.leg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  padding: 4px 10px 4px 7px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+}
+.leg.cur {
+  border-width: 1.5px;
+  border-style: solid;
+}
+.leg-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.leg-x {
+  font-size: 10px;
+  opacity: 0.35;
+  margin-left: 2px;
+  transition: opacity 0.2s;
+}
+.leg-x:hover {
+  opacity: 1;
+  color: #d85a30;
+}
+
+.abar {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.adot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.aname {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+.ahint {
+  font-size: 12px;
+  color: #7a95b0;
+}
+.clr-btn {
+  margin-left: auto;
+  padding: 6px 12px;
+  border: 1.5px solid #c8dff5;
+  border-radius: 8px;
+  background: #fff;
+  color: #5a7a9a;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.grid-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  min-width: 360px;
+}
+th {
+  font-size: 11px;
+  font-weight: 600;
+  color: #5a7a9a;
+  padding: 6px 2px;
+  text-align: center;
+}
+th.tl {
+  width: 44px;
+}
+td.tlc {
+  width: 44px;
+  font-size: 10px;
+  color: #9ab0c8;
+  text-align: right;
+  padding-right: 6px;
+  vertical-align: middle;
+  border: none;
+  white-space: nowrap;
+}
+td.cell {
+  border: 1px solid #c8dff5;
+  height: 54px;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  background: #fff;
+}
+td.cell.half {
+  border-top: 1px dashed #d8eaf8;
+}
+canvas.cv {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: block;
+}
+
+/* Custom touch action to prevent page scrolling only during drawing mode */
+.drawing-active td.cell {
+  touch-action: none;
+}
+
+.hint-txt {
+  font-size: 11px;
+  color: #a0b8cc;
+  margin-top: 10px;
+  text-align: center;
+}
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+.modal-bg.show {
+  display: flex;
+}
+.modal-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  width: 280px;
+  max-width: 90vw;
+}
+.modal-box h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1a1a2e;
+}
+.modal-inp {
+  width: 100%;
+  height: 44px;
+  border: 1.5px solid #b5d4f4;
+  border-radius: 10px;
+  padding: 0 12px;
+  font-size: 15px;
+  color: #1a1a2e;
+  -webkit-appearance: none;
+}
+.modal-inp:focus {
+  outline: none;
+  border-color: #378add;
+}
+.mbtns {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.mbtns button {
+  flex: 1;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+.mok {
+  background: #378add;
+  color: #fff;
+}
+.mok:active {
+  background: #185fa5;
+}
+.mcancel {
+  background: #f0f7ff;
+  color: #5a7a9a;
+}
 </style>
 </head>
 <body>
-<h1>🏃🏻‍♀️‍➡️ 러닝에서 풋살까지 🤸🏻‍♀️</h1>
+<div class="header-wrap">
+  <h1>?룂?뤋?띯?截뤴띯옟截??щ떇?먯꽌 ?뗭궡源뚯? ?ㅈ?뤋?띯?截?/h1>
+  <button class="admin-lock-btn" id="lockBtn" onclick="toggleAdminMode()">
+    <span class="lock-icon">?뵏</span> <span class="lock-txt">愿由ъ옄 濡쒓렇??/span>
+  </button>
+</div>
 <div class="sheets-wrap" id="sw"></div>
 <div class="content">
-  <div class="status" id="st">연결 중...</div>
+  <div class="status" id="st">?곌껐 以?..</div>
   <div class="entry-row">
-    <input class="nick-inp" id="ni" type="text" placeholder="닉네임 입력..." maxlength="8" autocomplete="off"/>
-    <button class="join-btn" onclick="join()">참여</button>
+    <input class="nick-inp" id="ni" type="text" placeholder="?됰꽕???낅젰..." maxlength="8" autocomplete="off"/>
+    <button class="join-btn" onclick="join()">李몄뿬</button>
   </div>
   <div class="legend" id="leg"></div>
   <div class="abar" id="ab">
     <span class="adot" id="ad"></span>
     <span class="aname" id="an"></span>
-    <span class="ahint">으로 표시 중</span>
-    <button class="clr-btn" onclick="clearMe()">지우기</button>
+    <span class="ahint">?쇰줈 ?쒖떆 以?/span>
+    <button class="clr-btn" onclick="clearMe()">吏?곌린</button>
   </div>
   <div class="grid-wrap"><table><thead id="th"></thead><tbody id="tb"></tbody></table></div>
-  <p class="hint-txt">셀을 탭·드래그해서 가능한 시간 표시</p>
+  <p class="hint-txt">?????룸뱶?섍렇?댁꽌 媛?ν븳 ?쒓컙 ?쒖떆</p>
 </div>
 <div class="modal-bg" id="modal">
   <div class="modal-box">
-    <h3>새 주차 이름</h3>
-    <input class="modal-inp" id="mi" placeholder="예: 6/2 주" maxlength="12"/>
+    <h3>??二쇱감 ?대쫫</h3>
+    <input class="modal-inp" id="mi" placeholder="?? 6/2 二? maxlength="12"/>
     <div class="mbtns">
-      <button class="mcancel" onclick="closeM()">취소</button>
-      <button class="mok" onclick="okM()">추가</button>
+      <button class="mcancel" onclick="closeM()">痍⑥냼</button>
+      <button class="mok" onclick="okM()">異붽?</button>
     </div>
   </div>
 </div>
 
 <script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import{getDatabase,ref,set,onValue,off}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, off } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-const db=getDatabase(initializeApp({apiKey:"AIzaSyCd9ynIwRHdIqugzMirh0nxrTWFK6ygr5M",authDomain:"runtogoaltogether.firebaseapp.com",databaseURL:"https://runtogoaltogether-default-rtdb.firebaseio.com",projectId:"runtogoaltogether",storageBucket:"runtogoaltogether.firebasestorage.app",messagingSenderId:"120835868108",appId:"1:120835868108:web:a9aff165e4ae8bfef70969"}));
+// Firebase RTDB connection (Using your existing parameters)
+const db = getDatabase(initializeApp({
+  apiKey: "AIzaSyCd9ynIwRHdIqugzMirh0nxrTWFK6ygr5M",
+  authDomain: "runtogoaltogether.firebaseapp.com",
+  databaseURL: "https://runtogoaltogether-default-rtdb.firebaseio.com",
+  projectId: "runtogoaltogether",
+  storageBucket: "runtogoaltogether.firebasestorage.app",
+  messagingSenderId: "120835868108",
+  appId: "1:120835868108:web:a9aff165e4ae8bfef70969"
+}));
 
-const DAYS=['월','화','수','목','금','토','일'];
-const TIMES=[];
-for(let h=18;h<=20;h++){TIMES.push(h+':00');TIMES.push(h+':30');}
+// Admin Settings passcode (Can edit here if you want to change it)
+const ADMIN_PASSWORD = "1234";
+
+const DAYS = ['??,'??,'??,'紐?,'湲?,'??,'??];
+const TIMES = [];
+for (let h = 18; h <= 20; h++) {
+  TIMES.push(h + ':00');
+  TIMES.push(h + ':30');
+}
 TIMES.push('21:00');
-const COLORS=['#378ADD','#D85A30','#1D9E75','#D4537E','#7F77DD','#BA7517','#2CBAB5','#E8762B','#639922','#993556'];
+const COLORS = ['#378ADD','#D85A30','#1D9E75','#D4537E','#7F77DD','#BA7517','#2CBAB5','#E8762B','#639922','#993556'];
 
-let sheets=[],cur=null,data={},activeUser=null,dragging=false,dMode=null,dataRef=null,dataUnsub=null;
+let sheets = [], cur = null, data = {}, activeUser = null, dragging = false, dMode = null, dataRef = null, dataUnsub = null;
+let isAdmin = localStorage.getItem('isAdmin') === 'true';
 
-const st=t=>document.getElementById('st').textContent=t;
-const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/'/g,'&#39;');
-const ha=(hex,a)=>{const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return`rgba(${r},${g},${b},${a})`;};
-const users=()=>Object.values(data.users||{});
+const st = t => document.getElementById('st').textContent = t;
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/'/g,'&#39;');
+const ha = (hex, a) => {
+  const r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16);
+  return `rgba(${r},${g},${b},${a})`;
+};
+const users = () => Object.values(data.users || {});
 
-onValue(ref(db,'sheets'),snap=>{
-  const v=snap.val()||{};
-  sheets=Object.values(v).sort((a,b)=>b.created-a.created);
-  if(!sheets.length){newSheet('첫 번째 주',true);}
-  else{
-    if(!cur||!sheets.find(s=>s.id===cur))selSheet(sheets[0].id);
-    else renderTabs();
+// Load sheets with custom order support
+onValue(ref(db, 'sheets'), snap => {
+  const v = snap.val() || {};
+  // Sort ascending by custom order, fallback to creation timestamp
+  sheets = Object.values(v).sort((a, b) => (a.order ?? a.created) - (b.order ?? b.created));
+  
+  if (!sheets.length) {
+    newSheet('泥?踰덉㎏ 二?, true);
+  } else {
+    if (!cur || !sheets.find(s => s.id === cur)) {
+      selSheet(sheets[0].id);
+    } else {
+      renderTabs();
+    }
   }
 });
 
-function newSheet(label,silent){
-  const id=Date.now();
-  set(ref(db,'sheets/'+id),{id,label:label||'새 주차',created:id});
-  if(!silent)selSheet(id);
+function newSheet(label, silent) {
+  const id = Date.now();
+  const maxOrder = sheets.length ? Math.max(...sheets.map(s => s.order ?? s.created)) : id;
+  set(ref(db, 'sheets/' + id), {
+    id,
+    label: label || '??二쇱감',
+    created: id,
+    order: maxOrder + 1
+  });
+  if (!silent) selSheet(id);
 }
 
-function delSheet(id){
-  if(sheets.length<=1){alert('마지막 시트는 삭제할 수 없어요.');return;}
-  set(ref(db,'sheets/'+id),null);
-  set(ref(db,'data/'+id),null);
-  if(cur===id)selSheet(sheets.find(s=>s.id!==id)?.id);
+function delSheet(id) {
+  if (sheets.length <= 1) {
+    alert('留덉?留??쒗듃????젣?????놁뼱??');
+    return;
+  }
+  if (confirm('???쒗듃瑜??뺣쭚 ??젣?섏떆寃좎뒿?덇퉴? 愿??李몄뿬?먮뱾???덉빟 ?댁뿭??紐⑤몢 ?④퍡 ??젣?⑸땲??')) {
+    set(ref(db, 'sheets/' + id), null);
+    set(ref(db, 'data/' + id), null);
+    if (cur === id) {
+      selSheet(sheets.find(s => s.id !== id)?.id);
+    }
+  }
 }
 
-function renderTabs(){
-  document.getElementById('sw').innerHTML=
-    sheets.map(s=>`<div class="sheet-tab${s.id===cur?' active':''}" onclick="_sel(${s.id})">${esc(s.label)}<span class="dx" onclick="event.stopPropagation();_del(${s.id})">✕</span></div>`).join('')
-    +`<button class="add-sh" onclick="openM()">+</button>`;
+// Move sheet left/right by swapping order field
+function moveSheet(direction) {
+  const idx = sheets.findIndex(s => s.id === cur);
+  if (idx === -1) return;
+  
+  let targetIdx = direction === 'left' ? idx - 1 : idx + 1;
+  if (targetIdx < 0 || targetIdx >= sheets.length) return; // Out of bounds
+  
+  const currentSheet = sheets[idx];
+  const targetSheet = sheets[targetIdx];
+  
+  // Assign explicit orders to all sheets if they don't have them yet, ensuring reliability
+  sheets.forEach((s, i) => {
+    if (s.order === undefined) {
+      s.order = i;
+    }
+  });
+  
+  const temp = currentSheet.order;
+  currentSheet.order = targetSheet.order;
+  targetSheet.order = temp;
+  
+  if (currentSheet.order === targetSheet.order) {
+    currentSheet.order = idx;
+    targetSheet.order = targetIdx;
+  }
+  
+  set(ref(db, 'sheets/' + currentSheet.id + '/order'), currentSheet.order);
+  set(ref(db, 'sheets/' + targetSheet.id + '/order'), targetSheet.order);
 }
 
-function selSheet(id){
-  cur=id;data={};activeUser=null;
-  if(dataUnsub){dataUnsub();dataUnsub=null;}
-  renderTabs();buildTable();renderLeg();updABar();
-  dataRef=ref(db,'data/'+id);
-  dataUnsub=onValue(dataRef,snap=>{data=snap.val()||{};st('실시간 연결됨 ✓');renderLeg();renderAll();});
+function renderTabs() {
+  const tabListHtml = sheets.map(s => {
+    const isActive = s.id === cur;
+    let tabHtml = `<div class="sheet-tab${isActive ? ' active' : ''}" onclick="_sel(${s.id})"`;
+    
+    if (isAdmin) {
+      tabHtml += ` ondblclick="_ren(${s.id})"`;
+    }
+    tabHtml += `>${esc(s.label)}`;
+    
+    if (isAdmin) {
+      if (isActive) {
+        tabHtml += `
+          <span class="edit-btn" title="?대쫫 ?섏젙" onclick="event.stopPropagation();_ren(${s.id})">?륅툘</span>
+          <span class="mv-btn" title="?쇱そ ?대룞" onclick="event.stopPropagation();_mv(${s.id}, 'left')">?</span>
+          <span class="mv-btn" title="?ㅻⅨ履??대룞" onclick="event.stopPropagation();_mv(${s.id}, 'right')">??/span>
+        `;
+      }
+      tabHtml += `<span class="dx" title="?쒗듃 ??젣" onclick="event.stopPropagation();_del(${s.id})">??/span>`;
+    }
+    
+    tabHtml += `</div>`;
+    return tabHtml;
+  }).join('');
+  
+  const addBtnHtml = isAdmin ? `<button class="add-sh" onclick="openM()">+</button>` : '';
+  
+  document.getElementById('sw').innerHTML = tabListHtml + addBtnHtml;
 }
 
-function join(){
-  const inp=document.getElementById('ni'),n=inp.value.trim();if(!n)return;
-  const ul=users();
-  if(ul.find(u=>u.name===n)){activeUser=ul.find(u=>u.name===n);renderLeg();updABar();inp.value='';inp.blur();return;}
-  const u={name:n,color:COLORS[ul.length%COLORS.length]};
-  set(ref(db,'data/'+cur+'/users/'+n),u);
-  activeUser=u;inp.value='';inp.blur();
-  document.getElementById('ab').style.display='flex';
+function selSheet(id) {
+  cur = id;
+  data = {};
+  activeUser = null;
+  document.body.classList.remove('drawing-active');
+  if (dataUnsub) {
+    dataUnsub();
+    dataUnsub = null;
+  }
+  renderTabs();
+  buildTable();
+  renderLeg();
+  updABar();
+  dataRef = ref(db, 'data/' + id);
+  dataUnsub = onValue(dataRef, snap => {
+    data = snap.val() || {};
+    st('?ㅼ떆媛??곌껐????);
+    renderLeg();
+    renderAll();
+  });
 }
 
-function rmUser(name){
-  set(ref(db,'data/'+cur+'/users/'+name),null);
-  set(ref(db,'data/'+cur+'/sels/'+name),null);
-  if(activeUser?.name===name){activeUser=null;updABar();}
+function join() {
+  const inp = document.getElementById('ni'), n = inp.value.trim();
+  if (!n) return;
+  const ul = users();
+  if (ul.find(u => u.name === n)) {
+    activeUser = ul.find(u => u.name === n);
+    renderLeg();
+    updABar();
+    document.body.classList.add('drawing-active');
+    inp.value = '';
+    inp.blur();
+    return;
+  }
+  const u = { name: n, color: COLORS[ul.length % COLORS.length] };
+  set(ref(db, 'data/' + cur + '/users/' + n), u);
+  activeUser = u;
+  inp.value = '';
+  inp.blur();
+  document.getElementById('ab').style.display = 'flex';
+  document.body.classList.add('drawing-active');
 }
 
-function clearMe(){
-  if(!activeUser)return;
-  set(ref(db,'data/'+cur+'/sels/'+activeUser.name),null);
+function rmUser(name) {
+  set(ref(db, 'data/' + cur + '/users/' + name), null);
+  set(ref(db, 'data/' + cur + '/sels/' + name), null);
+  if (activeUser?.name === name) {
+    activeUser = null;
+    updABar();
+    document.body.classList.remove('drawing-active');
+  }
 }
 
-function toggle(di,ti){
-  if(!activeUser)return;
-  const k=di+'_'+ti,cell=(data.sels&&data.sels[activeUser.name])||{};
-  if(dMode==='add')cell[k]=1;else delete cell[k];
-  set(ref(db,'data/'+cur+'/sels/'+activeUser.name),Object.keys(cell).length?cell:null);
+function clearMe() {
+  if (!activeUser) return;
+  set(ref(db, 'data/' + cur + '/sels/' + activeUser.name), null);
 }
 
-function renderLeg(){
-  const ul=users(),el=document.getElementById('leg');
-  if(!ul.length){el.innerHTML='<span style="font-size:12px;color:#9ab0c8">닉네임을 입력하고 참여하세요</span>';return;}
-  el.innerHTML=ul.map(u=>`<div class="leg${activeUser?.name===u.name?' cur':''}" style="background:${ha(u.color,0.1)};border-color:${activeUser?.name===u.name?u.color:'transparent'}" onclick="_sa('${esc(u.name)}')"><span class="leg-dot" style="background:${u.color}"></span><span style="color:#1a1a2e">${esc(u.name)}</span><span class="leg-x" onclick="event.stopPropagation();_rm('${esc(u.name)}')">✕</span></div>`).join('');
+function toggle(di, ti) {
+  if (!activeUser) return;
+  const k = di + '_' + ti, cell = (data.sels && data.sels[activeUser.name]) || {};
+  if (dMode === 'add') cell[k] = 1; else delete cell[k];
+  set(ref(db, 'data/' + cur + '/sels/' + activeUser.name), Object.keys(cell).length ? cell : null);
 }
 
-function updABar(){
-  const b=document.getElementById('ab');
-  if(!activeUser){b.style.display='none';return;}
-  b.style.display='flex';
-  document.getElementById('ad').style.background=activeUser.color;
-  document.getElementById('an').textContent=activeUser.name;
+function renderLeg() {
+  const ul = users(), el = document.getElementById('leg');
+  if (!ul.length) {
+    el.innerHTML = '<span style="font-size:12px;color:#9ab0c8">?됰꽕?꾩쓣 ?낅젰?섍퀬 李몄뿬?섏꽭??/span>';
+    return;
+  }
+  el.innerHTML = ul.map(u => `
+    <div class="leg${activeUser?.name === u.name ? ' cur' : ''}" 
+         style="background:${ha(u.color, 0.1)};border-color:${activeUser?.name === u.name ? u.color : 'transparent'}" 
+         onclick="_sa('${esc(u.name)}')">
+      <span class="leg-dot" style="background:${u.color}"></span>
+      <span style="color:#1a1a2e;font-weight:600">${esc(u.name)}</span>
+      <span class="leg-x" onclick="event.stopPropagation();_rm('${esc(u.name)}')">??/span>
+    </div>
+  `).join('');
 }
 
-function buildTable(){
-  document.getElementById('th').innerHTML='<tr><th class="tl"></th>'+DAYS.map(d=>`<th>${d}</th>`).join('')+'</tr>';
-  document.getElementById('tb').innerHTML=TIMES.map((t,ti)=>'<tr><td class="tlc">'+t+'</td>'+DAYS.map((_,di)=>`<td class="cell${t.includes(':30')?' half':''}" data-di="${di}" data-ti="${ti}"><canvas class="cv" id="c${di}_${ti}"></canvas></td>`).join('')+'</tr>').join('');
+function updABar() {
+  const b = document.getElementById('ab');
+  if (!activeUser) {
+    b.style.display = 'none';
+    document.body.classList.remove('drawing-active');
+    return;
+  }
+  b.style.display = 'flex';
+  document.getElementById('ad').style.background = activeUser.color;
+  document.getElementById('an').textContent = activeUser.name;
+}
+
+function buildTable() {
+  document.getElementById('th').innerHTML = '<tr><th class="tl"></th>' + DAYS.map(d => `<th>${d}</th>`).join('') + '</tr>';
+  document.getElementById('tb').innerHTML = TIMES.map((t, ti) => '<tr><td class="tlc">' + t + '</td>' + DAYS.map((_, di) => `<td class="cell${t.includes(':30') ? ' half' : ''}" data-di="${di}" data-ti="${ti}"><canvas class="cv" id="c${di}_${ti}"></canvas></td>`).join('') + '</tr>').join('');
   attachEv();
 }
 
-function renderAll(){DAYS.forEach((_,di)=>TIMES.forEach((_,ti)=>drawCell(di,ti)));}
+function renderAll() {
+  DAYS.forEach((_, di) => TIMES.forEach((_, ti) => drawCell(di, ti)));
+}
 
-function rand(seed){let s=seed;return()=>{s=(s*1664525+1013904223)&0xffffffff;return(s>>>0)/0xffffffff;};}
+function nameHash(name) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) {
+    h = (h * 31 + name.charCodeAt(i)) & 0xffffffff;
+  }
+  return (h >>> 0);
+}
 
-function drawCell(di,ti){
-  const cv=document.getElementById('c'+di+'_'+ti);if(!cv)return;
-  const td=cv.parentElement,w=td.offsetWidth||52,h=td.offsetHeight||52;
-  cv.width=w;cv.height=h;
-  const ctx=cv.getContext('2d');ctx.clearRect(0,0,w,h);
-  const k=di+'_'+ti;
-  const present=users().filter(u=>data.sels?.[u.name]?.[k]);
-  if(!present.length)return;
-  const R=8,pad=R+5,aw=w-pad*2,ah=h-pad*2;
-  const rnd=rand(di*997+ti*101+present.length*13+7);
-  const pts=[];
-  present.forEach(()=>{
-    let best=null,bestD=0;
-    for(let t=0;t<100;t++){
-      const x=pad+rnd()*aw,y=pad+rnd()*ah;
-      let m=Infinity;pts.forEach(p=>{const d=Math.hypot(p[0]-x,p[1]-y);if(d<m)m=d;});
-      if(m===Infinity)m=1e9;
-      if(m>bestD){bestD=m;best=[x,y];}
-      if(bestD>R*2.4)break;
-    }
-    pts.push(best);
-  });
-  present.forEach((u,i)=>{
-    const[x,y]=pts[i];
-    ctx.beginPath();ctx.arc(x,y,R,0,Math.PI*2);ctx.fillStyle=u.color;ctx.fill();
-    ctx.font='bold 7px -apple-system,sans-serif';ctx.fillStyle='#fff';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText(u.name.length>3?u.name.slice(0,3):u.name,x,y);
+// Pseudo-random deterministic placement that is uniform and identical across all cells
+function userPos(name, w, h, R) {
+  const padX = R + 5;
+  const padYTop = R + 11; // Reserved space above the dot for the nickname text
+  const padYBot = R + 4;
+  const aw = w - padX * 2;
+  const ah = h - (padYTop + padYBot);
+  const s = nameHash(name);
+  const x = padX + (((s * 1664525 + 1013904223) & 0xffffffff) >>> 0) / 0xffffffff * aw;
+  const y = padYTop + (((s * 22695477 + 1) & 0xffffffff) >>> 0) / 0xffffffff * ah;
+  return [x, y];
+}
+
+// Draw the glossy dots with their full nickname labels above them
+function drawCell(di, ti) {
+  const cv = document.getElementById('c' + di + '_' + ti);
+  if (!cv) return;
+  const td = cv.parentElement, w = td.offsetWidth || 52, h = td.offsetHeight || 52;
+  cv.width = w;
+  cv.height = h;
+  const ctx = cv.getContext('2d');
+  ctx.clearRect(0, 0, w, h);
+  const k = di + '_' + ti;
+  const present = users().filter(u => data.sels?.[u.name]?.[k]);
+  if (!present.length) return;
+  
+  const R = 5; // Dot radius
+  present.forEach(u => {
+    const [x, y] = userPos(u.name, w, h, R);
+    
+    // Draw the dot base
+    ctx.beginPath();
+    ctx.arc(x, y, R, 0, Math.PI * 2);
+    ctx.fillStyle = u.color;
+    ctx.fill();
+    
+    // Draw glossy center white dot
+    ctx.beginPath();
+    ctx.arc(x, y, R * 0.35, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    
+    // Draw the full nickname beautifully above the dot
+    ctx.font = 'bold 8.5px "Pretendard", -apple-system, sans-serif';
+    ctx.fillStyle = '#2c3e50';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(u.name, x, y - R - 2);
   });
 }
 
-function attachEv(){
-  document.querySelectorAll('td.cell').forEach(td=>{
-    const di=+td.dataset.di,ti=+td.dataset.ti;
-    td.addEventListener('touchstart',()=>{
-      if(!activeUser)return;dragging=true;
-      dMode=(data.sels?.[activeUser.name]?.[di+'_'+ti])?'remove':'add';toggle(di,ti);
-    },{passive:true});
-    td.addEventListener('touchmove',e=>{
-      if(!dragging||!activeUser)return;e.preventDefault();
-      const t=e.touches[0],el=document.elementFromPoint(t.clientX,t.clientY);
-      const c=el?.classList.contains('cell')?el:el?.closest?.('td.cell');
-      if(c)toggle(+c.dataset.di,+c.dataset.ti);
-    },{passive:false});
-    td.addEventListener('mousedown',e=>{
-      if(!activeUser)return;e.preventDefault();dragging=true;
-      dMode=(data.sels?.[activeUser.name]?.[di+'_'+ti])?'remove':'add';toggle(di,ti);
+// Mobile/desktop grid event listeners
+function attachEv() {
+  document.querySelectorAll('td.cell').forEach(td => {
+    const di = +td.dataset.di, ti = +td.dataset.ti;
+    
+    // Touch Interaction (Mobile)
+    td.addEventListener('touchstart', e => {
+      if (!activeUser) return;
+      e.preventDefault(); // Lock scroll while interacting
+      dragging = true;
+      dMode = (data.sels?.[activeUser.name]?.[di + '_' + ti]) ? 'remove' : 'add';
+      toggle(di, ti);
+    }, { passive: false });
+    
+    td.addEventListener('touchmove', e => {
+      if (!dragging || !activeUser) return;
+      e.preventDefault();
+      const t = e.touches[0];
+      const el = document.elementFromPoint(t.clientX, t.clientY);
+      const c = el?.classList.contains('cell') ? el : el?.closest?.('td.cell');
+      if (c) {
+        toggle(+c.dataset.di, +c.dataset.ti);
+      }
+    }, { passive: false });
+    
+    // Mouse Interaction (Desktop)
+    td.addEventListener('mousedown', e => {
+      if (!activeUser) return;
+      e.preventDefault();
+      dragging = true;
+      dMode = (data.sels?.[activeUser.name]?.[di + '_' + ti]) ? 'remove' : 'add';
+      toggle(di, ti);
     });
-    td.addEventListener('mouseenter',()=>{if(dragging&&activeUser)toggle(di,ti);});
+    
+    td.addEventListener('mouseenter', () => {
+      if (dragging && activeUser) {
+        toggle(di, ti);
+      }
+    });
   });
-  document.addEventListener('mouseup',()=>{dragging=false;});
-  document.addEventListener('touchend',()=>{dragging=false;});
-  window.addEventListener('resize',renderAll);
 }
 
-document.getElementById('ni').addEventListener('keydown',e=>{if(e.key==='Enter')join();});
+// Global window event listeners (declared only once outside cell initialization loop)
+document.addEventListener('mouseup', () => { dragging = false; });
+document.addEventListener('touchend', () => { dragging = false; });
+window.addEventListener('resize', renderAll);
 
-window._sel=selSheet;
-window._del=delSheet;
-window._sa=name=>{activeUser=users().find(u=>u.name===name);renderLeg();updABar();};
-window._rm=rmUser;
-window.openM=()=>{
-  const d=new Date();
-  document.getElementById('mi').value=`${d.getMonth()+1}/${d.getDate()} 주`;
-  document.getElementById('modal').classList.add('show');
-  setTimeout(()=>document.getElementById('mi').focus(),100);
+// Expose admin trigger and utility functions to window for HTML event bindings
+window.toggleAdminMode = () => {
+  if (isAdmin) {
+    if (confirm('愿由ъ옄 紐⑤뱶瑜?濡쒓렇?꾩썐?섏떆寃좎뒿?덇퉴?')) {
+      isAdmin = false;
+      localStorage.setItem('isAdmin', 'false');
+      updateAdminUI();
+    }
+  } else {
+    const pw = prompt('愿由ъ옄 鍮꾨?踰덊샇瑜??낅젰?섏꽭??');
+    if (pw === null) return;
+    if (pw === ADMIN_PASSWORD) {
+      isAdmin = true;
+      localStorage.setItem('isAdmin', 'true');
+      alert('愿由ъ옄 紐⑤뱶媛 ?쒖꽦?붾릺?덉뒿?덈떎!');
+      updateAdminUI();
+    } else {
+      alert('鍮꾨?踰덊샇媛 ?щ컮瑜댁? ?딆뒿?덈떎.');
+    }
+  }
 };
-window.closeM=()=>document.getElementById('modal').classList.remove('show');
-window.okM=()=>{const n=document.getElementById('mi').value.trim();if(n){newSheet(n);closeM();}};
-document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeM();});
-document.getElementById('mi').addEventListener('keydown',e=>{if(e.key==='Enter')okM();});
+
+function updateAdminUI() {
+  const lockBtn = document.getElementById('lockBtn');
+  if (isAdmin) {
+    lockBtn.innerHTML = '<span class="lock-icon">?뵑</span> <span class="lock-txt">愿由ъ옄 紐⑤뱶</span>';
+    lockBtn.classList.add('unlocked');
+  } else {
+    lockBtn.innerHTML = '<span class="lock-icon">?뵏</span> <span class="lock-txt">愿由ъ옄 濡쒓렇??/span>';
+    lockBtn.classList.remove('unlocked');
+  }
+  renderTabs();
+}
+
+// Initialize Admin UI State
+updateAdminUI();
+
+document.getElementById('ni').addEventListener('keydown', e => { if (e.key === 'Enter') join(); });
+
+window.join = join;
+window.clearMe = clearMe;
+window._sel = selSheet;
+window._ren = id => {
+  if (!isAdmin) return;
+  const s = sheets.find(x => x.id === id);
+  if (!s) return;
+  const n = prompt('?쒗듃 ?대쫫 蹂寃?', s.label);
+  if (n && n.trim()) {
+    set(ref(db, 'sheets/' + id + '/label'), n.trim());
+  }
+};
+window._del = id => {
+  if (!isAdmin) return;
+  delSheet(id);
+};
+window._mv = (id, direction) => {
+  if (!isAdmin) return;
+  moveSheet(direction);
+};
+window._sa = name => {
+  activeUser = users().find(u => u.name === name);
+  renderLeg();
+  updABar();
+  if (activeUser) {
+    document.body.classList.add('drawing-active');
+  } else {
+    document.body.classList.remove('drawing-active');
+  }
+};
+window._rm = rmUser;
+
+window.openM = () => {
+  if (!isAdmin) return;
+  const d = new Date();
+  document.getElementById('mi').value = `${d.getMonth() + 1}/${d.getDate()} 二?;
+  document.getElementById('modal').classList.add('show');
+  setTimeout(() => document.getElementById('mi').focus(), 100);
+};
+window.closeM = () => document.getElementById('modal').classList.remove('show');
+window.okM = () => {
+  if (!isAdmin) return;
+  const n = document.getElementById('mi').value.trim();
+  if (n) {
+    newSheet(n);
+    closeM();
+  }
+};
+
+document.getElementById('modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeM(); });
+document.getElementById('mi').addEventListener('keydown', e => { if (e.key === 'Enter') okM(); });
 </script>
 </body>
 </html>
