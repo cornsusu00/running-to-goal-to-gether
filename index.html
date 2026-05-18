@@ -842,7 +842,8 @@
 
     function buildTable() {
       document.getElementById('th').innerHTML = '<tr><th class="tl"></th>' + DAYS.map(d => `<th>${d}</th>`).join('') + '</tr>';
-      document.getElementById('tb').innerHTML = TIMES.map((t, ti) => '<tr><td class="tlc"><span>' + t + '</span></td>' + DAYS.map((_, di) => `<td class="cell${t.includes(':30') ? ' half' : ''}" data-di="${di}" data-ti="${ti}"><canvas class="cv" id="c${di}_${ti}"></canvas></td>`).join('') + '</tr>').join('');
+      document.getElementById('tb').innerHTML = TIMES.map((t, ti) => '<tr><td class="tlc"><span>' + t + '</span></td>' + DAYS.map((_, di) => `<td class="cell${t.includes(':30') ? ' half' : ''}" data-di="${di}" data-ti="${ti}"><canvas class="cv" id="c${di}_${ti}"></canvas></td>`).join('') + '</tr>').join('')
+        + '<tr><td class="tlc"><span>21:00</span></td>' + DAYS.map(() => '<td style="border:none;height:0;padding:0;"></td>').join('') + '</tr>';
       attachEv();
     }
 
